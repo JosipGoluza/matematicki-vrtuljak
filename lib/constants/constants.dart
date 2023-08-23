@@ -1,0 +1,21 @@
+//This is ratio for all screens, so that they all take as much screen space as possible
+
+const widthRatio = 4.2;
+const operationsRatio = 22;
+
+const widthRatioHomeScreen = 0.26;
+const heightRatioHomeScreen = 0.09;
+const signSeparator = 7.0;
+const gamesAndSettingsSeparator = 20.0;
+
+const bigScreenPadding = 16.0;
+const smallScreenPadding = 10.0;
+const settingsRowMargin = 16.0;
+
+// this constant is used to position the carousel right on the top of grass
+const carouselPositioning = 0.19;
+
+const isDesktopWidth = 1440;
+const isDesktopHeight = 500;
+
+const pauseButtonScale = 0.08;
