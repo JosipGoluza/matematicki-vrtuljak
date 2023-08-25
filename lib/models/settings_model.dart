@@ -1,10 +1,10 @@
-
 class SettingsModel {
   int numberOfRounds;
   int numberOfAnswers;
   bool musicEnabled;
   String symbolName;
   int numberOfTasks;
+  List<String> currentOperators;
 
   SettingsModel({
     required this.numberOfRounds,
@@ -12,5 +12,6 @@ class SettingsModel {
     required this.musicEnabled,
     required this.symbolName,
     required this.numberOfTasks,
+    required this.currentOperators,
   });
 }

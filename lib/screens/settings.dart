@@ -5,12 +5,15 @@ import 'package:matematicki_vrtuljak/settings_widgets/radio_button_music.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_rounds.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_symbols.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_tasks.dart';
+import 'package:matematicki_vrtuljak/settings_widgets/settings_alert_dialog.dart';
 import 'package:matematicki_vrtuljak/util/user_preferences.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
+import '../models/operators.dart';
 import '../models/settings_model.dart';
 import '../my_widgets/pause_button.dart';
+import '../settings_widgets/radio_button_operations.dart';
 
 class Settings extends StatefulWidget {
   UserPreferences userPreferences;
@@ -31,6 +34,7 @@ class _SettingsState extends State<Settings> {
     musicEnabled: false,
     symbolName: GameSymbol.numbers.name,
     numberOfTasks: 2,
+    currentOperators: [Operators.add.value, Operators.subtract.value],
   );
 
   roundsCallback(int value) {
@@ -63,6 +67,12 @@ class _SettingsState extends State<Settings> {
     });
   }
 
+  operatorsCallback(List<String> value) {
+    setState(() {
+      sharedPrefs.currentOperators = value;
+    });
+  }
+
   Future saveSettings() async {
     final newSettings = SettingsModel(
       numberOfRounds: sharedPrefs.numberOfRounds,
@@ -70,6 +80,7 @@ class _SettingsState extends State<Settings> {
       musicEnabled: sharedPrefs.musicEnabled,
       symbolName: sharedPrefs.symbolName,
       numberOfTasks: sharedPrefs.numberOfTasks,
+      currentOperators: sharedPrefs.currentOperators,
     );
     await widget.userPreferences.saveSettings(newSettings);
   }
@@ -130,15 +141,23 @@ class _SettingsState extends State<Settings> {
                       const SizedBox(height: 10),
                       RadioButtonTasks(tasksCallback, sharedPrefs.numberOfTasks,
                           sharedPrefs.symbolName),
+                      const SizedBox(height: 10),
+                      RadioButtonOperations(
+                        operatorsCallback,
+                        sharedPrefs.currentOperators,
+                      ),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ElevatedButton(
                             onPressed: () => {
-                              saveSettings(),
-                              context.go('/'),
+                              if (sharedPrefs.currentOperators.isEmpty)
+                                {showAlertDialog(context)}
+                              else
+                                {saveSettings(), context.go('/')}
                             },
-                            child: const Text('Save settigns'),
+                            child: const Text('Save settings'),
                           ),
                           const SizedBox(width: 10),
                           ElevatedButton(
@@ -216,16 +235,23 @@ class _SettingsState extends State<Settings> {
                     sharedPrefs.numberOfTasks,
                     sharedPrefs.symbolName,
                   ),
+                  const SizedBox(height: 10),
+                  RadioButtonOperations(
+                    operatorsCallback,
+                    sharedPrefs.currentOperators,
+                  ),
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         onPressed: () async => {
-                          saveSettings(),
-                          context.go('/'),
+                          if (sharedPrefs.currentOperators.isEmpty)
+                            {showAlertDialog(context)}
+                          else
+                            {saveSettings(), context.go('/')}
                         },
-                        child: const Text('Save settigns'),
+                        child: const Text('Save settings'),
                       ),
                       const SizedBox(width: 10),
                       ElevatedButton(

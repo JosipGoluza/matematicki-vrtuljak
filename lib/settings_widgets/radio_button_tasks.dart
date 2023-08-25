@@ -51,7 +51,7 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
       children: [
         // expanded da odvoji tekst od radio buttona i poravna sve u sredinu
         const Text(
-          'BROJ ZADATAKA',
+          'ZADACI DO BROJA',
           textAlign: TextAlign.end,
         ),
         const SizedBox(

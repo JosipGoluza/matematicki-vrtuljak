@@ -10,6 +10,10 @@ class UserPreferences {
     await prefs.setBool('musicEnabled', settings.musicEnabled);
     await prefs.setString('symbol', settings.symbolName);
     await prefs.setInt('numberOfTasks', settings.numberOfTasks);
+    await prefs.setStringList(
+      'currentOperators',
+      settings.currentOperators,
+    );
   }
 
   Future <SettingsModel> getSettings() async {
@@ -19,6 +23,7 @@ class UserPreferences {
     final musicEnabled = prefs.getBool('musicEnabled') ?? false;
     final symbolName = prefs.getString('symbol') ?? GameSymbol.numbers.name;
     final numberOfTasks = prefs.getInt('numberOfTasks') ?? 2;
+    final currentOperators = prefs.getStringList('currentOperators') ?? ['+', '-'];
 
     return SettingsModel(
       numberOfRounds: numberOfRounds,
@@ -26,6 +31,7 @@ class UserPreferences {
       musicEnabled: musicEnabled,
       symbolName: symbolName,
       numberOfTasks: numberOfTasks,
+      currentOperators: currentOperators,
     );
   }
 }
