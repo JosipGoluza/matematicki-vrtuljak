@@ -4,13 +4,13 @@ import '../constants/constants.dart';
 import '../models/game_symbol.dart';
 
 class RadioButtonSymbols extends StatefulWidget {
-  Function(String value) symbolCallback;
-  String value;
+  Function(GameSymbol value) symbolCallback;
+  GameSymbol value;
   Function(int value) tasksCallback;
-  int numberOfTasks;
+  int maxOperationNumber;
 
-  RadioButtonSymbols(
-      this.symbolCallback, this.value, this.tasksCallback, this.numberOfTasks,
+  RadioButtonSymbols(this.symbolCallback, this.value, this.tasksCallback,
+      this.maxOperationNumber,
       {Key? key})
       : super(key: key);
 
@@ -28,18 +28,18 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
         onPressed: () {
           setState(
             () {
-              widget.value = symbolValue.name;
+              widget.value = symbolValue;
               widget.symbolCallback(widget.value);
-              if (widget.numberOfTasks > symbolValue.max) {
-                widget.numberOfTasks = symbolValue.max;
-                widget.tasksCallback(widget.numberOfTasks);
+              if (widget.maxOperationNumber > symbolValue.max) {
+                widget.maxOperationNumber = symbolValue.max;
+                widget.tasksCallback(widget.maxOperationNumber);
               }
             },
           );
         },
         style: OutlinedButton.styleFrom(
           backgroundColor:
-              (widget.value == symbolValue.name) ? Colors.blue : Colors.transparent,
+              (widget.value == symbolValue) ? Colors.blue : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -52,7 +52,7 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
             'Brojevi',
             style: TextStyle(
               color:
-                  (widget.value == symbolValue.name) ? Colors.white : Colors.black,
+                  (widget.value == symbolValue) ? Colors.white : Colors.black,
             ),
           ),
           GameSymbol.images: Image.asset(

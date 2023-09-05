@@ -7,7 +7,7 @@ import '../models/game_symbol.dart';
 class RadioButtonTasks extends StatefulWidget {
   Function(int value) tasksCallback;
   int value;
-  String symbol;
+  GameSymbol symbol;
 
   RadioButtonTasks(this.tasksCallback, this.value, this.symbol, {Key? key})
       : super(key: key);
@@ -44,7 +44,7 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
 
   @override
   Widget build(BuildContext context) {
-    var Symbol = GameSymbol.values.firstWhere((e) => e.name == widget.symbol);
+    var currentSymbol = GameSymbol.values.firstWhere((e) => e == widget.symbol);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -58,9 +58,11 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
           width: settingsRowMargin,
         ),
         NumberPicker(
-          value: widget.value > Symbol.max ? Symbol.max : widget.value,
-          minValue: Symbol.min,
-          maxValue: Symbol.max,
+          value: widget.value > currentSymbol.max
+              ? currentSymbol.max
+              : widget.value,
+          minValue: currentSymbol.min,
+          maxValue: currentSymbol.max,
           onChanged: (value) {
             setState(() {
               widget.value = value;

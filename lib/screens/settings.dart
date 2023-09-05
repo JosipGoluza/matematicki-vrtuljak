@@ -32,9 +32,9 @@ class _SettingsState extends State<Settings> {
     numberOfRounds: 5,
     numberOfAnswers: 2,
     musicEnabled: false,
-    symbolName: GameSymbol.numbers.name,
-    numberOfTasks: 2,
-    currentOperators: [Operators.add.value, Operators.subtract.value],
+    currentSymbol: GameSymbol.numbers,
+    maxOperationNumber: 2,
+    currentOperators: [Operators.add, Operators.subtract],
   );
 
   roundsCallback(int value) {
@@ -55,19 +55,19 @@ class _SettingsState extends State<Settings> {
     });
   }
 
-  symbolsCallback(String value) {
+  symbolsCallback(GameSymbol value) {
     setState(() {
-      sharedPrefs.symbolName = value;
+      sharedPrefs.currentSymbol = value;
     });
   }
 
   tasksCallback(int value) {
     setState(() {
-      sharedPrefs.numberOfTasks = value;
+      sharedPrefs.maxOperationNumber = value;
     });
   }
 
-  operatorsCallback(List<String> value) {
+  operatorsCallback(List<Operators> value) {
     setState(() {
       sharedPrefs.currentOperators = value;
     });
@@ -78,8 +78,8 @@ class _SettingsState extends State<Settings> {
       numberOfRounds: sharedPrefs.numberOfRounds,
       numberOfAnswers: sharedPrefs.numberOfAnswers,
       musicEnabled: sharedPrefs.musicEnabled,
-      symbolName: sharedPrefs.symbolName,
-      numberOfTasks: sharedPrefs.numberOfTasks,
+      currentSymbol: sharedPrefs.currentSymbol,
+      maxOperationNumber: sharedPrefs.maxOperationNumber,
       currentOperators: sharedPrefs.currentOperators,
     );
     await widget.userPreferences.saveSettings(newSettings);
@@ -135,12 +135,12 @@ class _SettingsState extends State<Settings> {
                       ),
                       RadioButtonSymbols(
                           symbolsCallback,
-                          sharedPrefs.symbolName,
+                          sharedPrefs.currentSymbol,
                           tasksCallback,
-                          sharedPrefs.numberOfTasks),
+                          sharedPrefs.maxOperationNumber),
                       const SizedBox(height: 10),
-                      RadioButtonTasks(tasksCallback, sharedPrefs.numberOfTasks,
-                          sharedPrefs.symbolName),
+                      RadioButtonTasks(tasksCallback, sharedPrefs.maxOperationNumber,
+                          sharedPrefs.currentSymbol),
                       const SizedBox(height: 10),
                       RadioButtonOperations(
                         operatorsCallback,
@@ -225,15 +225,15 @@ class _SettingsState extends State<Settings> {
                   const SizedBox(height: 10),
                   RadioButtonSymbols(
                     symbolsCallback,
-                    sharedPrefs.symbolName,
+                    sharedPrefs.currentSymbol,
                     tasksCallback,
-                    sharedPrefs.numberOfTasks,
+                    sharedPrefs.maxOperationNumber,
                   ),
                   const SizedBox(height: 10),
                   RadioButtonTasks(
                     tasksCallback,
-                    sharedPrefs.numberOfTasks,
-                    sharedPrefs.symbolName,
+                    sharedPrefs.maxOperationNumber,
+                    sharedPrefs.currentSymbol,
                   ),
                   const SizedBox(height: 10),
                   RadioButtonOperations(

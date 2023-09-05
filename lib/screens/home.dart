@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:matematicki_vrtuljak/before_game/generate_before_start.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
+import '../models/operators.dart';
 import '../util/time.dart';
 import '../util/user_preferences.dart';
 
@@ -20,8 +20,9 @@ class _HomePageState extends State<HomePage> {
   int numberOfRounds = 5;
   int numberOfAnswers = 2;
   bool musicEnabled = false;
-  String symbolName = GameSymbol.numbers.name;
-  int numberOfTasks = 2;
+  GameSymbol chosenSymbol = GameSymbol.numbers;
+  int maxOperationNumber = 2;
+  List<Operators> operators = [Operators.add, Operators.subtract];
 
   @override
   void initState() {
@@ -35,8 +36,9 @@ class _HomePageState extends State<HomePage> {
       numberOfRounds = settings.numberOfRounds;
       numberOfAnswers = settings.numberOfAnswers;
       musicEnabled = settings.musicEnabled;
-      symbolName = settings.symbolName;
-      numberOfTasks = settings.numberOfTasks;
+      chosenSymbol = settings.currentSymbol;
+      maxOperationNumber = settings.maxOperationNumber;
+      operators = settings.currentOperators;
     });
   }
 
@@ -92,8 +94,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         InkWell(
                           onTap: () {
-                            startTimer(context, '/numbers',
-                                numberOfRounds, numberOfAnswers);
+                            startTimer(context, '/numbers', numberOfRounds,
+                                numberOfAnswers);
                             // generateBeforeStart(context, '/numbers',
                             //     numberOfRounds, numberOfAnswers);
                           },
@@ -110,8 +112,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         InkWell(
                           onTap: () {
-                            startTimer(context, '/different_sets',
-                                numberOfRounds);
+                            startTimer(
+                                context, '/different_sets', numberOfRounds);
                           },
                           child: Image(
                             fit: BoxFit.fill,
@@ -126,7 +128,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         InkWell(
                           onTap: () {
-                            context.go('/operations_to_ten');
+                            startTimerOperators(context, '/operations_to_ten',
+                                numberOfRounds, numberOfAnswers, operators);
                           },
                           child: Image(
                             fit: BoxFit.fill,

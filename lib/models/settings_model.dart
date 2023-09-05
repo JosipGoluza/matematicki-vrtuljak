@@ -1,17 +1,20 @@
+import 'package:matematicki_vrtuljak/models/game_symbol.dart';
+import 'package:matematicki_vrtuljak/models/operators.dart';
+
 class SettingsModel {
   int numberOfRounds;
   int numberOfAnswers;
   bool musicEnabled;
-  String symbolName;
-  int numberOfTasks;
-  List<String> currentOperators;
+  GameSymbol currentSymbol;
+  int maxOperationNumber;
+  List<Operators> currentOperators;
 
   SettingsModel({
     required this.numberOfRounds,
     required this.numberOfAnswers,
     required this.musicEnabled,
-    required this.symbolName,
-    required this.numberOfTasks,
+    required this.currentSymbol,
+    required this.maxOperationNumber,
     required this.currentOperators,
   });
 }

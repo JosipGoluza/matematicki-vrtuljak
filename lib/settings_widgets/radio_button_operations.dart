@@ -4,8 +4,8 @@ import 'package:matematicki_vrtuljak/models/operators.dart';
 import '../constants/constants.dart';
 
 class RadioButtonOperations extends StatefulWidget {
-  Function(List<String> value) operatorsCallback;
-  List<String> value;
+  Function(List<Operators> value) operatorsCallback;
+  List<Operators> value;
 
   RadioButtonOperations(this.operatorsCallback, this.value, {Key? key})
       : super(key: key);
@@ -15,7 +15,7 @@ class RadioButtonOperations extends StatefulWidget {
 }
 
 class _RadioButtonOperationsState extends State<RadioButtonOperations> {
-  Widget customRadioButton(String operatorValue) {
+  Widget customRadioButton(Operators operatorValue) {
     return SizedBox(
       child: OutlinedButton(
         onPressed: () {
@@ -40,7 +40,7 @@ class _RadioButtonOperationsState extends State<RadioButtonOperations> {
           ),
         ),
         child: Text(
-          operatorValue,
+          operatorValue.value,
           style: TextStyle(
             color: (widget.value.contains(operatorValue))
                 ? Colors.white
@@ -67,8 +67,7 @@ class _RadioButtonOperationsState extends State<RadioButtonOperations> {
         Expanded(
           child: Row(
             children: <Widget>[
-              for (var operator in Operators.values)
-                customRadioButton(operator.value)
+              for (var operator in Operators.values) customRadioButton(operator)
             ],
           ),
         ),

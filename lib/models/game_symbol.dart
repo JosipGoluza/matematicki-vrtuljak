@@ -13,3 +13,7 @@ enum GameSymbol {
   final int min;
   final int max;
 }
+
+getSymbolFromName(String name) {
+  return GameSymbol.values.firstWhere((element) => element.name == name);
+}
