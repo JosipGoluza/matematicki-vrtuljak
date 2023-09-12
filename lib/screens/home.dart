@@ -128,8 +128,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                         InkWell(
                           onTap: () {
-                            startTimerOperators(context, '/operations_to_ten',
-                                numberOfRounds, numberOfAnswers, operators);
+                            startTimerOperators(
+                              context,
+                              '/operations_to_ten',
+                              numberOfRounds,
+                              numberOfAnswers,
+                              operators,
+                            );
                           },
                           child: Image(
                             fit: BoxFit.fill,
@@ -144,7 +149,14 @@ class _HomePageState extends State<HomePage> {
                         ),
                         InkWell(
                           onTap: () {
-                            context.go('/operations');
+                            startTimerOperators(
+                              context,
+                              '/operations_to_ten',
+                              numberOfRounds,
+                              numberOfAnswers,
+                              operators,
+                              maxOperationNumber,
+                            );
                           },
                           child: Image(
                             fit: BoxFit.fill,
