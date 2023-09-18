@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/before_game/generate_before_start.dart';
+import 'package:matematicki_vrtuljak/models/game_symbol.dart';
 import 'package:matematicki_vrtuljak/models/operators.dart';
 
 import '../before_game/generate_before_start_operations.dart';
@@ -25,7 +26,7 @@ void startTimer(BuildContext context, String path, int numberOfRounds,
 }
 
 void startTimerOperators(BuildContext context, String path, int numberOfRounds,
-    int numberOfAnswers, List<Operators> operators,
+    int numberOfAnswers, List<Operators> operators, GameSymbol gameSymbol,
     [int maxOperationNumber = 10]) {
   Stopwatch stopwatch = Stopwatch();
   stopwatch.start();
@@ -44,6 +45,7 @@ void startTimerOperators(BuildContext context, String path, int numberOfRounds,
     wrongGuesses,
     numberOfAnswers,
     maxOperationNumber,
+    gameSymbol,
     operators,
   );
 }

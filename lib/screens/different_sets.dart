@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/models/start_game_model.dart';
 import 'package:matematicki_vrtuljak/my_widgets/dynamic_empty_container.dart';
-import 'package:matematicki_vrtuljak/my_widgets/wooden_answers.dart';
 
 import '../before_game/generate_before_start.dart';
 import '../constants/constants.dart';
+import '../models/start_different_sets_game_model.dart';
 import '../my_widgets/item_pictures/different_sets_item_pictures.dart';
 import '../my_widgets/pause_button.dart';
 
@@ -61,7 +60,6 @@ class _DifferentSetsState extends State<DifferentSets> {
         builder: (context, constraints) {
           final isDesktop = constraints.maxWidth >= isDesktopWidth &&
               constraints.maxHeight >= isDesktopHeight;
-
           return Container(
             padding: EdgeInsets.all(
               isDesktop ? bigScreenPadding : smallScreenPadding,

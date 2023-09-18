@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/models/game_finish_model.dart';
+import 'package:matematicki_vrtuljak/models/start_operations_game_model.dart';
 import 'package:matematicki_vrtuljak/screens/about.dart';
 import 'package:matematicki_vrtuljak/screens/different_sets.dart';
 import 'package:matematicki_vrtuljak/screens/game_finish.dart';
 import 'package:matematicki_vrtuljak/screens/home.dart';
 import 'package:matematicki_vrtuljak/screens/numbers.dart';
 import 'package:matematicki_vrtuljak/screens/operations.dart';
-import 'package:matematicki_vrtuljak/screens/operations_to_ten.dart';
 import 'package:matematicki_vrtuljak/screens/settings.dart';
 import 'package:matematicki_vrtuljak/util/user_preferences.dart';
 
-import 'models/start_game_model.dart';
+import 'models/start_different_sets_game_model.dart';
+import 'models/start_numbers_game_model.dart';
 
 GoRouter router = GoRouter(
   routes: [
@@ -61,11 +62,43 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/operations_to_ten',
-      builder: (context, state) => const OperationsToTen(),
+      pageBuilder: (context, state) {
+        StartOperationsGameModel startGameModel =
+            state.extra as StartOperationsGameModel;
+        return CustomTransitionPage(
+          child: Operations(startGameModel: startGameModel),
+          key: UniqueKey(),
+          transitionsBuilder: (BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      },
     ),
     GoRoute(
       path: '/operations',
-      builder: (context, state) => const Operations(),
+      pageBuilder: (context, state) {
+        StartOperationsGameModel startGameModel =
+            state.extra as StartOperationsGameModel;
+        return CustomTransitionPage(
+          child: Operations(startGameModel: startGameModel),
+          key: UniqueKey(),
+          transitionsBuilder: (BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      },
     ),
     GoRoute(
       path: '/settings',

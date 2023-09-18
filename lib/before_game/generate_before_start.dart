@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'dart:math';
 
 import '../models/game_finish_model.dart';
-import '../models/start_game_model.dart';
+import '../models/start_different_sets_game_model.dart';
+import '../models/start_numbers_game_model.dart';
 
 void generateBeforeStart(BuildContext context, String path, int numberOfRounds,
     int currentRound, Stopwatch stopwatch, int correctGuesses, int wrongGuesses,
     int numberOfAnswers,) {
   Random random = Random();
 
-  // print('currentRound: $currentRound, numberOfRounds: $numberOfRounds');
   if (currentRound >= numberOfRounds) {
     stopwatch.stop();
     context.go(

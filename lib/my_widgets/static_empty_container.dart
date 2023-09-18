@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/models/game_symbol.dart';
 
 class StaticEmptyContainer extends StatelessWidget {
   final double height;
   final double width;
+  final GameSymbol gameSymbol;
+  final int containerNumber;
 
   const StaticEmptyContainer({
     Key? key,
     required this.height,
     required this.width,
+    required this.gameSymbol,
+    required this.containerNumber,
   }) : super(key: key);
 
   @override
@@ -24,10 +29,23 @@ class StaticEmptyContainer extends StatelessWidget {
           20,
         ),
       ),
-      child: Image.asset(
-        'assets/images/game_icons/symbol_17.png',
-        fit: BoxFit.fill,
-      ),
+      child: {
+        GameSymbol.numbers: Text(
+          containerNumber.toString(),
+          style: const TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        GameSymbol.images: Image.asset(
+          'assets/images/game_icons/symbol_$containerNumber.png',
+          fit: BoxFit.fill,
+        ),
+        GameSymbol.blocks: Image.asset(
+          'assets/images/game_icons/tree$containerNumber.png',
+          fit: BoxFit.fill,
+        ),
+      }[gameSymbol],
     );
   }
 }

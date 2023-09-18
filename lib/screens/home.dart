@@ -134,6 +134,7 @@ class _HomePageState extends State<HomePage> {
                               numberOfRounds,
                               numberOfAnswers,
                               operators,
+                              chosenSymbol,
                             );
                           },
                           child: Image(
@@ -155,6 +156,7 @@ class _HomePageState extends State<HomePage> {
                               numberOfRounds,
                               numberOfAnswers,
                               operators,
+                              chosenSymbol,
                               maxOperationNumber,
                             );
                           },
