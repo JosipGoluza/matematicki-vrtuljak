@@ -70,6 +70,8 @@ flutter:
     - assets/images/en/
     - assets/images/es/
     - assets/images/game_icons/
+    - assets/images/tree/
+    - assets/images/apples/
     - assets/images/hu/
     - assets/images/launcher/
     - assets/images/pt/

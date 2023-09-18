@@ -118,9 +118,9 @@ class _DifferentSetsState extends State<DifferentSets> {
                                     answerBoxCallback(Colors.red);
                                   }
                                 },
-                                child: Stack(
+                                child: const Stack(
                                     alignment: Alignment.center,
-                                    children: const [
+                                    children: [
                                       Image(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
@@ -151,9 +151,9 @@ class _DifferentSetsState extends State<DifferentSets> {
                                     answerBoxCallback(Colors.red);
                                   }
                                 },
-                                child: Stack(
+                                child: const Stack(
                                     alignment: Alignment.center,
-                                    children: const [
+                                    children: [
                                       Image(
                                         fit: BoxFit.fill,
                                         image: AssetImage(

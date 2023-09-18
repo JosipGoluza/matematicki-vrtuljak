@@ -32,17 +32,17 @@ class StaticEmptyContainer extends StatelessWidget {
       child: {
         GameSymbol.numbers: Text(
           containerNumber.toString(),
-          style: const TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: height * 0.8,
           ),
         ),
         GameSymbol.images: Image.asset(
-          'assets/images/game_icons/symbol_$containerNumber.png',
+          'assets/images/apples/apple$containerNumber.png',
           fit: BoxFit.fill,
         ),
         GameSymbol.blocks: Image.asset(
-          'assets/images/game_icons/tree$containerNumber.png',
+          'assets/images/tree/tree$containerNumber.png',
           fit: BoxFit.fill,
         ),
       }[gameSymbol],

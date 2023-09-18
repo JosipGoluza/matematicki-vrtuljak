@@ -1,12 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/models/game_symbol.dart';
 
 class WoodenAnswers extends StatefulWidget {
   double height;
   double width;
   int correctAnswer;
   int numberOfAnswers;
+  GameSymbol gameSymbol;
   Function(Color value) answerBoxCallback;
 
   WoodenAnswers({
@@ -16,6 +18,7 @@ class WoodenAnswers extends StatefulWidget {
     required this.correctAnswer,
     required this.numberOfAnswers,
     required this.answerBoxCallback,
+    this.gameSymbol = GameSymbol.numbers,
   }) : super(key: key);
 
   @override
@@ -29,7 +32,7 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
     Random randomizer = Random();
     numberList.add(widget.correctAnswer);
     while (numberList.length < widget.numberOfAnswers) {
-      int randomNumber = randomizer.nextInt(10) + 1;
+      int randomNumber = randomizer.nextInt(widget.gameSymbol.max) + 1;
       if (!numberList.contains(randomNumber)) {
         numberList.add(randomNumber);
       }
@@ -45,7 +48,7 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: widget.height,
       width: widget.width,
       child: Row(
@@ -79,7 +82,23 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: Text(answer.toString()),
+                      child: {
+                        GameSymbol.numbers: Text(
+                          answer.toString(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: widget.width * 0.05,
+                          ),
+                        ),
+                        GameSymbol.images: Image.asset(
+                          'assets/images/apples/apple$answer.png',
+                          fit: BoxFit.fill,
+                        ),
+                        GameSymbol.blocks: Image.asset(
+                          'assets/images/tree/tree$answer.png',
+                          fit: BoxFit.fill,
+                        ),
+                      }[widget.gameSymbol],
                     ),
                   ],
                 ),
