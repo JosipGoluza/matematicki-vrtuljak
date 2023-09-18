@@ -9,6 +9,7 @@ class WoodenAnswers extends StatefulWidget {
   int correctAnswer;
   int numberOfAnswers;
   GameSymbol gameSymbol;
+  int maxAnswerNumber;
   Function(Color value) answerBoxCallback;
 
   WoodenAnswers({
@@ -18,6 +19,7 @@ class WoodenAnswers extends StatefulWidget {
     required this.correctAnswer,
     required this.numberOfAnswers,
     required this.answerBoxCallback,
+    required this.maxAnswerNumber,
     this.gameSymbol = GameSymbol.numbers,
   }) : super(key: key);
 
@@ -32,7 +34,7 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
     Random randomizer = Random();
     numberList.add(widget.correctAnswer);
     while (numberList.length < widget.numberOfAnswers) {
-      int randomNumber = randomizer.nextInt(widget.gameSymbol.max) + 1;
+      int randomNumber = randomizer.nextInt(widget.maxAnswerNumber) + 1;
       if (!numberList.contains(randomNumber)) {
         numberList.add(randomNumber);
       }
@@ -57,7 +59,7 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
         children: [
           for (var answer in numberList)
             SizedBox(
-              width: widget.width * 0.15,
+              width: widget.width * 0.165,
               height: widget.height,
               child: Center(
                 child: Stack(
@@ -90,13 +92,24 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
                             fontSize: widget.width * 0.05,
                           ),
                         ),
-                        GameSymbol.images: Image.asset(
-                          'assets/images/apples/apple$answer.png',
-                          fit: BoxFit.fill,
+                        GameSymbol.images: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: widget.height * 0.25,
+                            top: widget.height * 0.16,
+                          ),
+                          child: Image.asset(
+                            'assets/images/apples/apple$answer.png',
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                        GameSymbol.blocks: Image.asset(
-                          'assets/images/tree/tree$answer.png',
-                          fit: BoxFit.fill,
+                        GameSymbol.blocks: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: widget.height * 0.13,
+                          ),
+                          child: Image.asset(
+                            'assets/images/tree/tree$answer.png',
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       }[widget.gameSymbol],
                     ),

@@ -105,6 +105,7 @@ class _NumbersState extends State<Numbers> {
                                   widget.startGameModel.correctAnswer,
                               numberOfAnswers:
                                   widget.startGameModel.numberOfAnswers,
+                              maxAnswerNumber: 10,
                               answerBoxCallback: answerBoxCallback,
                             ),
                           ],
