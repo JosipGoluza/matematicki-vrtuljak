@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             startTimerOperators(
                               context,
-                              '/operations_to_ten',
+                              '/operations',
                               numberOfRounds,
                               numberOfAnswers,
                               operators,

@@ -62,18 +62,18 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
               width: widget.width * 0.165,
               height: widget.height,
               child: Center(
-                child: Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      child: InkWell(
-                        onTap: () async {
-                          if (answer == widget.correctAnswer) {
-                            await widget.answerBoxCallback(Colors.green);
-                          } else {
-                            await widget.answerBoxCallback(Colors.red);
-                          }
-                        },
+                child: InkWell(
+                  onTap: () async {
+                    if (answer == widget.correctAnswer) {
+                      await widget.answerBoxCallback(Colors.green);
+                    } else {
+                      await widget.answerBoxCallback(Colors.red);
+                    }
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
                         child: const Image(
                           fit: BoxFit.fill,
                           image: AssetImage(
@@ -81,39 +81,39 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: {
-                        GameSymbol.numbers: Text(
-                          answer.toString(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: widget.width * 0.05,
+                      Container(
+                        alignment: Alignment.center,
+                        child: {
+                          GameSymbol.numbers: Text(
+                            answer.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: widget.width * 0.05,
+                            ),
                           ),
-                        ),
-                        GameSymbol.images: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: widget.height * 0.25,
-                            top: widget.height * 0.16,
+                          GameSymbol.images: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: widget.height * 0.25,
+                              top: widget.height * 0.16,
+                            ),
+                            child: Image.asset(
+                              'assets/images/apples/apple$answer.png',
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          child: Image.asset(
-                            'assets/images/apples/apple$answer.png',
-                            fit: BoxFit.fill,
+                          GameSymbol.blocks: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: widget.height * 0.13,
+                            ),
+                            child: Image.asset(
+                              'assets/images/tree/tree$answer.png',
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                        ),
-                        GameSymbol.blocks: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: widget.height * 0.13,
-                          ),
-                          child: Image.asset(
-                            'assets/images/tree/tree$answer.png',
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      }[widget.gameSymbol],
-                    ),
-                  ],
+                        }[widget.gameSymbol],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

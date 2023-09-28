@@ -45,6 +45,9 @@ void generateBeforeStartOperations(
       wrongGuesses: wrongGuesses,
       operationValues: operationValues,
       gameSymbol: gameSymbol,
+      path: path,
+      maxOperationNumber: maxOperationNumber,
+      operators: operators,
     );
     context.go(path, extra: startGameModel);
   }
