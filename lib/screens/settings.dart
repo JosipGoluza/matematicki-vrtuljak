@@ -7,6 +7,7 @@ import 'package:matematicki_vrtuljak/settings_widgets/radio_button_symbols.dart'
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_tasks.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/settings_alert_dialog.dart';
 import 'package:matematicki_vrtuljak/util/user_preferences.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
@@ -14,6 +15,7 @@ import '../models/operators.dart';
 import '../models/settings_model.dart';
 import '../my_widgets/pause_button.dart';
 import '../settings_widgets/radio_button_operations.dart';
+import '../util/audio_player_handler.dart';
 
 class Settings extends StatefulWidget {
   UserPreferences userPreferences;
@@ -49,9 +51,10 @@ class _SettingsState extends State<Settings> {
     });
   }
 
-  musicCallback(bool value) {
+  Future<void> musicCallback(bool shouldPlay) async {
+    await updateAudioPlayerState(shouldPlay);
     setState(() {
-      sharedPrefs.musicEnabled = value;
+      sharedPrefs.musicEnabled = shouldPlay;
     });
   }
 
@@ -74,6 +77,9 @@ class _SettingsState extends State<Settings> {
   }
 
   Future saveSettings() async {
+    // Delay is added to prevent wrong settings being saved
+    await Future.delayed(const Duration(milliseconds: 500));
+
     final newSettings = SettingsModel(
       numberOfRounds: sharedPrefs.numberOfRounds,
       numberOfAnswers: sharedPrefs.numberOfAnswers,
@@ -139,7 +145,9 @@ class _SettingsState extends State<Settings> {
                           tasksCallback,
                           sharedPrefs.maxOperationNumber),
                       const SizedBox(height: 10),
-                      RadioButtonTasks(tasksCallback, sharedPrefs.maxOperationNumber,
+                      RadioButtonTasks(
+                          tasksCallback,
+                          sharedPrefs.maxOperationNumber,
                           sharedPrefs.currentSymbol),
                       const SizedBox(height: 10),
                       RadioButtonOperations(
@@ -155,7 +163,7 @@ class _SettingsState extends State<Settings> {
                               if (sharedPrefs.currentOperators.isEmpty)
                                 {showAlertDialog(context)}
                               else
-                                {saveSettings(), context.go('/')}
+                                {goHome(context)}
                             },
                             child: const Text('Save settings'),
                           ),
@@ -249,7 +257,9 @@ class _SettingsState extends State<Settings> {
                           if (sharedPrefs.currentOperators.isEmpty)
                             {showAlertDialog(context)}
                           else
-                            {saveSettings(), context.go('/')}
+                            {
+                              goHome(context),
+                            }
                         },
                         child: const Text('Save settings'),
                       ),
@@ -307,5 +317,22 @@ class _SettingsState extends State<Settings> {
             ),
           },
         );
+  }
+
+  updateAudioPlayerState(bool shouldPlay) {
+    final audioPlayer = Provider.of<AudioPlayerProvider>(
+      context,
+      listen: false,
+    ).audioPlayer;
+    if (shouldPlay) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  }
+
+  Future<void> goHome(BuildContext context) async {
+    await saveSettings();
+    context.go('/');
   }
 }

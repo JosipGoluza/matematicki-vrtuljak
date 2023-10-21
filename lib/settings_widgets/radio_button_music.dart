@@ -27,9 +27,8 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
           widget.musicCallback(widget.value);
         },
         style: OutlinedButton.styleFrom(
-          backgroundColor: (widget.value == musicValue)
-              ? Colors.blue
-              : Colors.transparent,
+          backgroundColor:
+              (widget.value == musicValue) ? Colors.blue : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

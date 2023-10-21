@@ -42,6 +42,7 @@ dependencies:
   url_launcher: ^6.1.11
   just_audio: ^0.9.35
   just_audio_windows: ^0.2.0
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
     - assets/images/hu/
     - assets/images/launcher/
     - assets/images/pt/
+    - assets/audio/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
