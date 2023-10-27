@@ -43,6 +43,9 @@ dependencies:
   just_audio: ^0.9.35
   just_audio_windows: ^0.2.0
   provider: ^6.0.5
+  i18n_extension: ^9.0.2
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
