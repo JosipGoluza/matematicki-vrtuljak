@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:i18n_extension/i18n_widget.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_answers.dart';
+import 'package:matematicki_vrtuljak/settings_widgets/radio_button_language.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_music.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_rounds.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_symbols.dart';
@@ -11,6 +13,7 @@ import 'package:provider/provider.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
+import '../models/language.dart';
 import '../models/operators.dart';
 import '../models/settings_model.dart';
 import '../my_widgets/pause_button.dart';
@@ -37,6 +40,7 @@ class _SettingsState extends State<Settings> {
     currentSymbol: GameSymbol.numbers,
     maxOperationNumber: 2,
     currentOperators: [Operators.add, Operators.subtract],
+    languageOptions: LanguageOptions.english,
   );
 
   roundsCallback(int value) {
@@ -76,6 +80,12 @@ class _SettingsState extends State<Settings> {
     });
   }
 
+  languageCallback(LanguageOptions value) {
+    setState(() {
+      sharedPrefs.languageOptions = value;
+    });
+  }
+
   Future saveSettings() async {
     // Delay is added to prevent wrong settings being saved
     await Future.delayed(const Duration(milliseconds: 500));
@@ -87,6 +97,7 @@ class _SettingsState extends State<Settings> {
       currentSymbol: sharedPrefs.currentSymbol,
       maxOperationNumber: sharedPrefs.maxOperationNumber,
       currentOperators: sharedPrefs.currentOperators,
+      languageOptions: sharedPrefs.languageOptions,
     );
     await widget.userPreferences.saveSettings(newSettings);
   }
@@ -108,7 +119,7 @@ class _SettingsState extends State<Settings> {
                 child: Container(
                   color: Colors.grey[350],
                   width: 700,
-                  height: 400,
+                  height: 500,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -131,6 +142,9 @@ class _SettingsState extends State<Settings> {
                       ),
                       const SizedBox(height: 10),
                       RadioButtonMusic(musicCallback, sharedPrefs.musicEnabled),
+                      const SizedBox(height: 10),
+                      RadioButtonLanguage(
+                          languageCallback, sharedPrefs.languageOptions),
                       const SizedBox(height: 15),
                       const Text(
                         "POSTAVKE ZA IGRU \"OPERACIJE\"",
@@ -163,7 +177,12 @@ class _SettingsState extends State<Settings> {
                               if (sharedPrefs.currentOperators.isEmpty)
                                 {showAlertDialog(context)}
                               else
-                                {goHome(context)}
+                                {
+                                  I18n.of(context).locale = getLanguageFromName(
+                                    sharedPrefs.languageOptions,
+                                  ),
+                                  goHome(context)
+                                }
                             },
                             child: const Text('Save settings'),
                           ),
@@ -222,6 +241,10 @@ class _SettingsState extends State<Settings> {
                     musicCallback,
                     sharedPrefs.musicEnabled,
                   ),
+                  RadioButtonLanguage(
+                    languageCallback,
+                    sharedPrefs.languageOptions,
+                  ),
                   const SizedBox(height: 15),
                   const Text(
                     "POSTAVKE ZA IGRU \"OPERACIJE\"",
@@ -258,7 +281,10 @@ class _SettingsState extends State<Settings> {
                             {showAlertDialog(context)}
                           else
                             {
-                              goHome(context),
+                              I18n.of(context).locale = getLanguageFromName(
+                                sharedPrefs.languageOptions,
+                              ),
+                              goHome(context)
                             }
                         },
                         child: const Text('Save settings'),

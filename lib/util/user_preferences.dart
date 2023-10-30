@@ -2,6 +2,7 @@ import 'package:matematicki_vrtuljak/models/game_symbol.dart';
 import 'package:matematicki_vrtuljak/models/settings_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/language.dart';
 import '../models/operators.dart';
 
 class UserPreferences {
@@ -14,6 +15,7 @@ class UserPreferences {
     await prefs.setInt('maxOperationNumber', settings.maxOperationNumber);
     await prefs.setStringList('currentOperators',
         settings.currentOperators.map((e) => e.value).toList());
+    await prefs.setString('languageOptions', settings.languageOptions.name);
   }
 
   Future<SettingsModel> getSettings() async {
@@ -28,6 +30,9 @@ class UserPreferences {
     final currentOperatorsPrefs =
         prefs.getStringList('currentOperators') ?? ['+', '-'];
     final currentOperators = getOperatorFromValue(currentOperatorsPrefs);
+    final currentLanguageOptions =
+        prefs.getString('languageOptions') ?? LanguageOptions.english.name;
+    final languageOptions = getLanguageOptionFromName(currentLanguageOptions);
 
     return SettingsModel(
       numberOfRounds: numberOfRounds,
@@ -36,6 +41,7 @@ class UserPreferences {
       currentSymbol: symbolName,
       maxOperationNumber: maxOperationNumber,
       currentOperators: currentOperators,
+      languageOptions: languageOptions,
     );
   }
 }
