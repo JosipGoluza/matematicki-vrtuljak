@@ -102,115 +102,14 @@ class _SettingsState extends State<Settings> {
     await widget.userPreferences.saveSettings(newSettings);
   }
 
-  Widget settingsDesktop() {
-    return Container(
-      padding: const EdgeInsets.all(bigScreenPadding),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/game_bg.png'),
-          fit: BoxFit.fill,
-        ),
-      ),
-      child: Stack(
-        children: [
-          LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-              return Center(
-                child: Container(
-                  color: Colors.grey[350],
-                  width: 700,
-                  height: 500,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'POSTAVKE',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      RadioButtonRounds(
-                        roundsCallback,
-                        sharedPrefs.numberOfRounds,
-                      ),
-                      const SizedBox(height: 10),
-                      RadioButtonAnswers(
-                        answersCallback,
-                        sharedPrefs.numberOfAnswers,
-                      ),
-                      const SizedBox(height: 10),
-                      RadioButtonMusic(musicCallback, sharedPrefs.musicEnabled),
-                      const SizedBox(height: 10),
-                      RadioButtonLanguage(
-                          languageCallback, sharedPrefs.languageOptions),
-                      const SizedBox(height: 15),
-                      const Text(
-                        "POSTAVKE ZA IGRU \"OPERACIJE\"",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      RadioButtonSymbols(
-                          symbolsCallback,
-                          sharedPrefs.currentSymbol,
-                          tasksCallback,
-                          sharedPrefs.maxOperationNumber),
-                      const SizedBox(height: 10),
-                      RadioButtonTasks(
-                          tasksCallback,
-                          sharedPrefs.maxOperationNumber,
-                          sharedPrefs.currentSymbol),
-                      const SizedBox(height: 10),
-                      RadioButtonOperations(
-                        operatorsCallback,
-                        sharedPrefs.currentOperators,
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () => {
-                              if (sharedPrefs.currentOperators.isEmpty)
-                                {showAlertDialog(context)}
-                              else
-                                {
-                                  I18n.of(context).locale = getLanguageFromName(
-                                    sharedPrefs.languageOptions,
-                                  ),
-                                  goHome(context)
-                                }
-                            },
-                            child: const Text('Save settings'),
-                          ),
-                          const SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () => {
-                              context.go('/'),
-                            },
-                            child: const Text('Cancel'),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-          const Padding(
-            padding: EdgeInsets.all(bigScreenPadding),
-            child: PauseButton(),
-          ),
-        ],
-      ),
-    );
+  @override
+  void initState() {
+    super.initState();
+    initializeSettingsPreferences();
   }
 
-  Widget settingsMobile() {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[350],
       // stack is used to set pause button on top right corner
@@ -307,28 +206,6 @@ class _SettingsState extends State<Settings> {
             child: PauseButton(),
           ),
         ],
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initializeSettingsPreferences();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth >= isDesktopWidth ||
-              constraints.maxHeight >= isDesktopHeight) {
-            return settingsDesktop();
-          } else {
-            return settingsMobile();
-          }
-        },
       ),
     );
   }

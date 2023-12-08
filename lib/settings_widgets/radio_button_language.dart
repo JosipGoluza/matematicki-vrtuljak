@@ -18,7 +18,7 @@ class RadioButtonLanguage extends StatefulWidget {
 class RadioButtonLanguageState extends State<RadioButtonLanguage> {
   Widget customRadioButton(LanguageOptions languageValue) {
     return SizedBox(
-      width: 40,
+      width: 50,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -44,6 +44,18 @@ class RadioButtonLanguageState extends State<RadioButtonLanguage> {
           LanguageOptions.croatian: Image.asset(
             'assets/images/language_icon/croatian.png',
           ),
+          LanguageOptions.spanish: Image.asset(
+            'assets/images/language_icon/spanish.png',
+          ),
+          LanguageOptions.french: Image.asset(
+            'assets/images/language_icon/french.png',
+          ),
+          LanguageOptions.portuguese: Image.asset(
+            'assets/images/language_icon/portuguese.png',
+          ),
+          LanguageOptions.hungarian: Image.asset(
+            'assets/images/language_icon/hungarian.png',
+          ),
         }[languageValue],
       ),
     );
@@ -67,12 +79,8 @@ class RadioButtonLanguageState extends State<RadioButtonLanguage> {
         Expanded(
           child: Row(
             children: <Widget>[
-              customRadioButton(LanguageOptions.english),
-              customRadioButton(LanguageOptions.croatian),
-              customRadioButton(LanguageOptions.english),
-              customRadioButton(LanguageOptions.english),
-              customRadioButton(LanguageOptions.english),
-              customRadioButton(LanguageOptions.english),
+              for (var element in LanguageOptions.values)
+                customRadioButton(element)
             ],
           ),
         ),

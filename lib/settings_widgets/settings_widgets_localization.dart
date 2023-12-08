@@ -1,6 +1,7 @@
 import 'package:i18n_extension/i18n_extension.dart';
 
 const selectLanguage = "selectLanguage";
+const numberOfRoundsLocalization = "numberOfRoundsLocalization";
 const greetings = "greetings";
 const increment = "increment";
 const changeLanguage = "changeLanguage";
@@ -9,28 +10,20 @@ const youClickedThisNumberOfTimes = "youClickedThisNumberOfTimes";
 extension SettingsLocalization on String {
   static final _t = Translations.from("en_us", {
     selectLanguage: {
-      "en_us": "Language",
-      "hr_hr": "Jezik",
+      "en_us": "LANGUAGE:",
+      "hr_hr": "JEZIK:",
+      "es_es": "IDIOMA:",
+      "fr_fr": "LANGUE:",
+      "pt_pt": "IDIOMA:",
+      "hu_hu": "NYELV:",
     },
-    greetings: {
-      "en_us": "This example demonstrates how to use identifiers as keys.\n\n"
-          "For example, you can write:\n"
-          "helloThere.i18n\n"
-          "instead of\n"
-          "\"Hello There\".i18n",
-      "hr_hr": "Este exemplo demonstra como usar identificadores como chaves.\n\n"
-          "Por exemplo, você pode escrever:\n"
-          "saudacao.i18n\n"
-          "em vez de\n"
-          "\"Olá como vai\".i18n",
-    },
-    increment: {
-      "en_us": "Increment",
-      "hr_hr": "Incrementar",
-    },
-    changeLanguage: {
-      "en_us": "Change Language",
-      "hr_hr": "Mude Idioma",
+    numberOfRoundsLocalization: {
+      "en_us": "NUMBER OF ROUNDS:",
+      "hr_hr": "BROJ ZADATAKA:",
+      "es_es": "NÚMERO DE RONDAS:",
+      "fr_fr": "NOMBRE DE TOURS:",
+      "pt_pt": "NÚMERO DE RONDAS:",
+      "hu_hu": "MENETEK SZÁMA:",
     },
     youClickedThisNumberOfTimes: {
       "en_us": "You clicked the button %d times:"
