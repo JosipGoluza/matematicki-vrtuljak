@@ -23,7 +23,7 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
   Widget customRadioButton(GameSymbol symbolValue) {
     // Used SizedBox with fixed width to center the widget
     return SizedBox(
-      width: (widget.maxWidth / 2) / 5,
+      width: widget.maxWidth / 7,
       height: 40,
       child: OutlinedButton(
         onPressed: () {
@@ -72,16 +72,21 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Expanded(
-            child: Text(
+        Text(
           'BROJEVI ILI SIMBOLI',
           textAlign: TextAlign.end,
-        )),
+          style: TextStyle(
+            fontSize: widget.maxWidth / 55,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         const SizedBox(
           width: settingsRowMargin,
         ),
         Expanded(
+          flex: 5,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               customRadioButton(GameSymbol.numbers),
               customRadioButton(GameSymbol.images),

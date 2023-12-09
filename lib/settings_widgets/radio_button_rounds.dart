@@ -5,8 +5,9 @@ import '../constants/constants.dart';
 class RadioButtonRounds extends StatefulWidget {
   Function(int value) roundsCallback;
   int value;
+  double maxWidth;
 
-  RadioButtonRounds(this.roundsCallback, this.value, {Key? key})
+  RadioButtonRounds(this.roundsCallback, this.value, this.maxWidth, {Key? key})
       : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
     }
 
     return SizedBox(
-      width: 60,
+      width: widget.maxWidth / 7,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -59,17 +60,24 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // expanded da odvoji tekst od radio buttona i poravna sve u sredinu
-        const Expanded(
+        Expanded(
+          flex: 1,
           child: Text(
             'BROJ ZADATAKA',
             textAlign: TextAlign.end,
+            style: TextStyle(
+              fontSize: widget.maxWidth / 55,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         const SizedBox(
           width: settingsRowMargin,
         ),
         Expanded(
+          flex: 5,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               customRadioButton(5),
               customRadioButton(10),

@@ -225,6 +225,7 @@ class _HomePageState extends State<HomePage> {
                         height: (currentHeight > 500)
                             ? currentHeight * 0.6
                             : currentHeight * 0.75,
+                        width: currentWidth * 0.6,
                         image: const AssetImage(
                           'assets/images/hr/logo.png',
                         ),

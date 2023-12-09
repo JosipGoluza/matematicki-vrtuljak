@@ -8,8 +8,9 @@ class RadioButtonTasks extends StatefulWidget {
   Function(int value) tasksCallback;
   int value;
   GameSymbol symbol;
+  double maxWidth;
 
-  RadioButtonTasks(this.tasksCallback, this.value, this.symbol, {Key? key})
+  RadioButtonTasks(this.tasksCallback, this.value, this.symbol, this.maxWidth, {Key? key})
       : super(key: key);
 
   @override
@@ -20,7 +21,6 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
   Widget customRadioButton(int roundsValue) {
     // Used SizedBox with fixed width to center the widget
     return SizedBox(
-      width: 60,
       child: OutlinedButton(
         onPressed: () {},
         style: OutlinedButton.styleFrom(
@@ -47,12 +47,16 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
     var currentSymbol = GameSymbol.values.firstWhere((e) => e == widget.symbol);
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         // expanded da odvoji tekst od radio buttona i poravna sve u sredinu
-        const Text(
+        Text(
           'ZADACI DO BROJA',
           textAlign: TextAlign.end,
+          style: TextStyle(
+            fontSize: widget.maxWidth / 55,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(
           width: settingsRowMargin,
@@ -70,7 +74,7 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
             });
           },
           // itemCount: 5,
-          itemWidth: 50,
+          // itemWidth: widget.maxWidth / 7,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.black),

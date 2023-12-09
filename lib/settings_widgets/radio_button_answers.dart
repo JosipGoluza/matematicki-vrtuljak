@@ -4,8 +4,10 @@ import 'package:matematicki_vrtuljak/constants/constants.dart';
 class RadioButtonAnswers extends StatefulWidget {
   Function(int value) answersCallback;
   int value;
+  double maxWidth;
 
-  RadioButtonAnswers(this.answersCallback, this.value, {Key? key})
+  RadioButtonAnswers(this.answersCallback, this.value, this.maxWidth,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -16,7 +18,7 @@ class _RadioButtonAnswersState extends State<RadioButtonAnswers> {
   Widget customRadioButton(int answersValue) {
     // Used SizedBox with fixed width to center the widget
     return SizedBox(
-      width: 60,
+      width: widget.maxWidth / 7,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -25,9 +27,8 @@ class _RadioButtonAnswersState extends State<RadioButtonAnswers> {
           widget.answersCallback(widget.value);
         },
         style: OutlinedButton.styleFrom(
-          backgroundColor: (widget.value == answersValue)
-              ? Colors.blue
-              : Colors.transparent,
+          backgroundColor:
+              (widget.value == answersValue) ? Colors.blue : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -50,16 +51,23 @@ class _RadioButtonAnswersState extends State<RadioButtonAnswers> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Expanded(
+        Expanded(
+            flex: 1,
             child: Text(
-          'BROJ ODGOVORA',
-          textAlign: TextAlign.end,
-        )),
+              'BROJ ODGOVORA',
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                fontSize: widget.maxWidth / 55,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
         const SizedBox(
           width: settingsRowMargin,
         ),
         Expanded(
+          flex: 5,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               customRadioButton(2),
               customRadioButton(3),

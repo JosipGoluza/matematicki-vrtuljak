@@ -6,8 +6,9 @@ import '../constants/constants.dart';
 class RadioButtonOperations extends StatefulWidget {
   Function(List<Operators> value) operatorsCallback;
   List<Operators> value;
+  double maxWidth;
 
-  RadioButtonOperations(this.operatorsCallback, this.value, {Key? key})
+  RadioButtonOperations(this.operatorsCallback, this.value, this.maxWidth, {Key? key})
       : super(key: key);
 
   @override
@@ -17,6 +18,7 @@ class RadioButtonOperations extends StatefulWidget {
 class _RadioButtonOperationsState extends State<RadioButtonOperations> {
   Widget customRadioButton(Operators operatorValue) {
     return SizedBox(
+      width: widget.maxWidth / 7,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -56,16 +58,23 @@ class _RadioButtonOperationsState extends State<RadioButtonOperations> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Expanded(
+        Expanded(
+            flex: 1,
             child: Text(
           'MOGUĆI OPERATORI',
           textAlign: TextAlign.end,
+              style: TextStyle(
+                fontSize: widget.maxWidth / 55,
+                fontWeight: FontWeight.bold,
+              ),
         )),
         const SizedBox(
           width: settingsRowMargin,
         ),
         Expanded(
+          flex: 5,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               for (var operator in Operators.values) customRadioButton(operator)
             ],

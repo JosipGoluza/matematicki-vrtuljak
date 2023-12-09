@@ -117,90 +117,102 @@ class _SettingsState extends State<Settings> {
         builder: (context, constraints) {
           return Stack(
             children: [
-              Center(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'POSTAVKE',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      RadioButtonRounds(
-                        roundsCallback,
-                        sharedPrefs.numberOfRounds,
-                      ),
-                      RadioButtonAnswers(
-                        answersCallback,
-                        sharedPrefs.numberOfAnswers,
-                      ),
-                      RadioButtonMusic(
-                        musicCallback,
-                        sharedPrefs.musicEnabled,
-                      ),
-                      RadioButtonLanguage(
-                        languageCallback,
-                        sharedPrefs.languageOptions,
-                      ),
-                      const SizedBox(height: 15),
-                      const Text(
-                        "POSTAVKE ZA IGRU \"OPERACIJE\"",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      RadioButtonSymbols(
-                        symbolsCallback,
-                        sharedPrefs.currentSymbol,
-                        tasksCallback,
-                        sharedPrefs.maxOperationNumber,
-                        constraints.maxWidth,
-                      ),
-                      const SizedBox(height: 10),
-                      RadioButtonTasks(
-                        tasksCallback,
-                        sharedPrefs.maxOperationNumber,
-                        sharedPrefs.currentSymbol,
-                      ),
-                      const SizedBox(height: 10),
-                      RadioButtonOperations(
-                        operatorsCallback,
-                        sharedPrefs.currentOperators,
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () async => {
-                              if (sharedPrefs.currentOperators.isEmpty)
-                                {showAlertDialog(context)}
-                              else
-                                {
-                                  I18n.of(context).locale = getLanguageFromName(
-                                    sharedPrefs.languageOptions,
-                                  ),
-                                  goHome(context)
-                                }
-                            },
-                            child: const Text('Save settings'),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'POSTAVKE',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () => {
-                              context.go('/'),
-                            },
-                            child: const Text('Cancel'),
+                        ),
+                        const SizedBox(height: 10),
+                        RadioButtonRounds(
+                          roundsCallback,
+                          sharedPrefs.numberOfRounds,
+                          constraints.maxWidth,
+                        ),
+                        const SizedBox(height: 10),
+                        RadioButtonAnswers(
+                          answersCallback,
+                          sharedPrefs.numberOfAnswers,
+                          constraints.maxWidth,
+                        ),
+                        const SizedBox(height: 10),
+                        RadioButtonMusic(
+                          musicCallback,
+                          sharedPrefs.musicEnabled,
+                          constraints.maxWidth,
+                        ),
+                        const SizedBox(height: 10),
+                        RadioButtonLanguage(
+                          languageCallback,
+                          sharedPrefs.languageOptions,
+                          constraints.maxWidth,
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "POSTAVKE ZA IGRU \"OPERACIJE\"",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        const SizedBox(height: 10),
+                        RadioButtonSymbols(
+                          symbolsCallback,
+                          sharedPrefs.currentSymbol,
+                          tasksCallback,
+                          sharedPrefs.maxOperationNumber,
+                          constraints.maxWidth,
+                        ),
+                        const SizedBox(height: 10),
+                        RadioButtonTasks(
+                          tasksCallback,
+                          sharedPrefs.maxOperationNumber,
+                          sharedPrefs.currentSymbol,
+                          constraints.maxWidth,
+                        ),
+                        const SizedBox(height: 10),
+                        RadioButtonOperations(
+                          operatorsCallback,
+                          sharedPrefs.currentOperators,
+                          constraints.maxWidth,
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () async => {
+                                if (sharedPrefs.currentOperators.isEmpty)
+                                  {showAlertDialog(context)}
+                                else
+                                  {
+                                    I18n.of(context).locale = getLanguageFromName(
+                                      sharedPrefs.languageOptions,
+                                    ),
+                                    goHome(context)
+                                  }
+                              },
+                              child: const Text('Save settings'),
+                            ),
+                            const SizedBox(width: 10),
+                            ElevatedButton(
+                              onPressed: () => {
+                                context.go('/'),
+                              },
+                              child: const Text('Cancel'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

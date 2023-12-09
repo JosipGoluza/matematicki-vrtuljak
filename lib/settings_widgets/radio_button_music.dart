@@ -5,8 +5,9 @@ import '../constants/constants.dart';
 class RadioButtonMusic extends StatefulWidget {
   Function(bool value) musicCallback;
   bool value;
+  double maxWidth;
 
-  RadioButtonMusic(this.musicCallback, this.value, {Key? key})
+  RadioButtonMusic(this.musicCallback, this.value, this.maxWidth, {Key? key})
       : super(key: key);
 
   @override
@@ -18,7 +19,7 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
     var text = musicValue ? 'DA' : 'NE';
     // Used SizedBox with fixed width to center the widget
     return SizedBox(
-      // width: 60,
+      width: (widget.maxWidth) / 7,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -51,15 +52,22 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Expanded(
-            child: Text(
-          'GLAZBA',
-          textAlign: TextAlign.end,
-        )),
+        Expanded(
+          flex: 1,
+          child: Text(
+            'GLAZBA',
+            textAlign: TextAlign.end,
+            style: TextStyle(
+              fontSize: widget.maxWidth / 55,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         const SizedBox(
           width: settingsRowMargin,
         ),
         Expanded(
+          flex: 5,
           child: Row(
             children: <Widget>[
               customRadioButton(false),
