@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/models/game_symbol.dart';
 
@@ -18,15 +20,15 @@ class StaticEmptyContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: width,
+      height: min(height, width),
+      width: min(height, width),
       decoration: BoxDecoration(
         border: Border.all(
           width: 3,
           color: Colors.grey,
         ),
         borderRadius: BorderRadius.circular(
-          20,
+          10,
         ),
       ),
       child: {
@@ -34,7 +36,7 @@ class StaticEmptyContainer extends StatelessWidget {
           containerNumber.toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: height * 0.8,
+            fontSize: min(height, width) * 0.8,
           ),
         ),
         GameSymbol.images: Image.asset(

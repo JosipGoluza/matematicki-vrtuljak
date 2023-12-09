@@ -216,9 +216,9 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(smallScreenPadding),
-                child: PauseButton(),
+              Padding(
+                padding: const EdgeInsets.all(smallScreenPadding),
+                child: PauseButton(constraints.maxWidth, constraints.maxHeight),
               ),
             ],
           );

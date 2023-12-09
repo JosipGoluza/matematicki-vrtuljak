@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class DynamicEmptyContainer extends StatelessWidget {
@@ -16,8 +18,8 @@ class DynamicEmptyContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: width,
+      height: min(height, width),
+      width: min(height, width),
       decoration: BoxDecoration(
         border: Border.all(
           width: 3,
@@ -25,7 +27,7 @@ class DynamicEmptyContainer extends StatelessWidget {
         ),
         color: boxColor,
         borderRadius: BorderRadius.circular(
-          20,
+          10,
         ),
       ),
     );

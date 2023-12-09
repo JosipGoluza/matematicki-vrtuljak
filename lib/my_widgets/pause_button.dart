@@ -1,9 +1,21 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class PauseButton extends StatelessWidget {
-  const PauseButton({super.key});
+import '../constants/constants.dart';
 
+class PauseButton extends StatefulWidget {
+  double maxWidth;
+  double maxHeight;
+
+  PauseButton(this.maxWidth, this.maxHeight, {super.key});
+
+  @override
+  State<PauseButton> createState() => _PauseButtonState();
+}
+
+class _PauseButtonState extends State<PauseButton> {
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -12,11 +24,11 @@ class PauseButton extends StatelessWidget {
         onTap: () {
           context.go('/');
         },
-        child: const Image(
+        child: Image(
           fit: BoxFit.fill,
-          width: 50,
-          height: 50,
-          image: AssetImage(
+          width: min(widget.maxWidth, widget.maxHeight) / pauseButtonSizeScale,
+          height: min(widget.maxWidth, widget.maxHeight) / pauseButtonSizeScale,
+          image: const AssetImage(
             'assets/images/button_pause.png',
           ),
         ),

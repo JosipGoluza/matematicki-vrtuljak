@@ -83,20 +83,24 @@ class _DifferentSetsState extends State<DifferentSets> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             DifferentSetsItemPictures(
-                              height: constraints.maxHeight * 0.6,
-                              width: constraints.maxWidth * 0.2,
+                              height: constraints.maxHeight *
+                                  differentSetsItemPicturesHeightScale,
+                              width: constraints.maxWidth *
+                                  differentSetsItemPicturesWidthScale,
                               imageName: widget.startGameModel.imageName,
                               answer: widget.startGameModel.correctAnswer,
                               imageSize: constraints.maxHeight * 0.1,
                             ),
                             DynamicEmptyContainer(
                               height: constraints.maxHeight * 0.3,
-                              width: constraints.maxHeight * 0.3,
+                              width: constraints.maxWidth * 0.3,
                               boxColor: answerBoxColor,
                             ),
                             DifferentSetsItemPictures(
-                              height: constraints.maxHeight * 0.6,
-                              width: constraints.maxWidth * 0.2,
+                              height: constraints.maxHeight *
+                                  differentSetsItemPicturesHeightScale,
+                              width: constraints.maxWidth *
+                                  differentSetsItemPicturesWidthScale,
                               imageName: widget.startGameModel.imageName,
                               answer: widget.startGameModel.otherAnswer,
                               imageSize: constraints.maxHeight * 0.1,
@@ -175,7 +179,11 @@ class _DifferentSetsState extends State<DifferentSets> {
                     ),
                   ),
                 ),
-                const PauseButton(),
+                Padding(
+                  padding: const EdgeInsets.all(smallScreenPadding),
+                  child:
+                      PauseButton(constraints.maxWidth, constraints.maxHeight),
+                ),
               ],
             ),
           );

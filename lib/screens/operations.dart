@@ -62,11 +62,9 @@ class _OperationsState extends State<Operations> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth >= isDesktopWidth &&
-              constraints.maxHeight >= isDesktopHeight;
           return Container(
-            padding: EdgeInsets.all(
-              isDesktop ? bigScreenPadding : smallScreenPadding,
+            padding: const EdgeInsets.all(
+              smallScreenPadding,
             ),
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -81,14 +79,17 @@ class _OperationsState extends State<Operations> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const PauseButton(),
+                      Padding(
+                        padding: const EdgeInsets.all(smallScreenPadding),
+                        child: PauseButton(constraints.maxWidth, constraints.maxHeight),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           StaticEmptyContainer(
-                            height: constraints.maxHeight * 0.35,
-                            width: constraints.maxHeight * 0.35,
+                            height: constraints.maxHeight * operationsContainerHeightScale,
+                            width: constraints.maxWidth * operationsContainerWidthScale,
                             gameSymbol: widget.startGameModel.gameSymbol,
                             containerNumber:
                                 widget.startGameModel.operationValues.firstNumber,
@@ -100,8 +101,8 @@ class _OperationsState extends State<Operations> {
                             ),
                           ),
                           StaticEmptyContainer(
-                            height: constraints.maxHeight * 0.35,
-                            width: constraints.maxHeight * 0.35,
+                            height: constraints.maxHeight * operationsContainerHeightScale,
+                            width: constraints.maxWidth * operationsContainerWidthScale,
                             gameSymbol: widget.startGameModel.gameSymbol,
                             containerNumber: widget
                                 .startGameModel.operationValues.secondNumber,
@@ -113,8 +114,8 @@ class _OperationsState extends State<Operations> {
                             ),
                           ),
                           DynamicEmptyContainer(
-                            height: constraints.maxHeight * 0.35,
-                            width: constraints.maxHeight * 0.35,
+                            height: constraints.maxHeight * operationsContainerHeightScale,
+                            width: constraints.maxWidth * operationsContainerWidthScale,
                             boxColor: answerBoxColor,
                           ),
                         ],
@@ -124,8 +125,8 @@ class _OperationsState extends State<Operations> {
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           WoodenAnswers(
-                            height: constraints.maxWidth * 0.2,
-                            width: constraints.maxWidth * 0.97,
+                            height: constraints.maxHeight * 0.2,
+                            width: constraints.maxWidth * 0.95,
                             correctAnswer: widget
                                 .startGameModel.operationValues.operationResult,
                             numberOfAnswers:

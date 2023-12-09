@@ -95,7 +95,7 @@ class _NumbersState extends State<Numbers> {
                             ),
                             DynamicEmptyContainer(
                               height: constraints.maxHeight * 0.3,
-                              width: constraints.maxHeight * 0.3,
+                              width: constraints.maxWidth * 0.3,
                               boxColor: answerBoxColor,
                             ),
                             WoodenAnswers(
@@ -114,7 +114,10 @@ class _NumbersState extends State<Numbers> {
                     ),
                   ),
                 ),
-                const PauseButton(),
+                Padding(
+                  padding: const EdgeInsets.all(smallScreenPadding),
+                  child: PauseButton(constraints.maxWidth, constraints.maxHeight),
+                ),
               ],
             ),
           );

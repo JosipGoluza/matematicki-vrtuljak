@@ -59,8 +59,8 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
         children: [
           for (var answer in numberList)
             SizedBox(
-              width: widget.width * 0.165,
-              height: widget.height,
+              width: min(widget.width * 0.165, widget.height),
+              height: min(widget.width * 0.165, widget.height),
               child: Center(
                 child: InkWell(
                   onTap: () async {
@@ -88,7 +88,9 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
                             answer.toString(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: widget.width * 0.05,
+                              fontSize:
+                                  min(widget.width * 0.165, widget.height) *
+                                      0.5,
                             ),
                           ),
                           GameSymbol.images: Padding(

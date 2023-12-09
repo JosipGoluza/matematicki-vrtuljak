@@ -81,24 +81,17 @@ class _GameFinishState extends State<GameFinish> {
     );
   }
 
-  Widget gameFinishDesktop() {
-    return Container(
-      padding: const EdgeInsets.all(bigScreenPadding),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/game_bg.png'),
-          fit: BoxFit.fill,
-        ),
-      ),
-      child: Stack(
-        children: [
-          LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-              return Center(
-                child: Container(
-                  color: Colors.grey[350],
-                  width: 700,
-                  height: 400,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Scaffold(
+            backgroundColor: Colors.grey[350],
+            // stack is used to set pause button on top right corner
+            body: Stack(
+              children: [
+                Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -131,7 +124,7 @@ class _GameFinishState extends State<GameFinish> {
                           //   onPressed: () => {
                           //     context.go('/'),
                           //   },
-                          //
+                          //   // dodati novu igru
                           //   child: const Text('IGRAJ PONOVNO'),
                           // ),
                         ],
@@ -139,85 +132,14 @@ class _GameFinishState extends State<GameFinish> {
                     ],
                   ),
                 ),
-              );
-            },
-          ),
-          const Padding(
-            padding: EdgeInsets.all(bigScreenPadding),
-            child: PauseButton(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget gameFinishMobile() {
-    return Scaffold(
-      backgroundColor: Colors.grey[350],
-      // stack is used to set pause button on top right corner
-      body: Stack(
-        children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'IGRA GOTOVA',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                correctGuesses(),
-                const SizedBox(height: 20),
-                wrongGuesses(),
-                const SizedBox(height: 20),
-                timeTaken(),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () => {
-                        context.go('/'),
-                      },
-                      child: const Text('POVRATAK'),
-                    ),
-                    // DODATI NOVU IGRU !!!
-                    // const SizedBox(width: 10),
-                    // ElevatedButton(
-                    //   onPressed: () => {
-                    //     context.go('/'),
-                    //   },
-                    //   // dodati novu igru
-                    //   child: const Text('IGRAJ PONOVNO'),
-                    // ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(smallScreenPadding),
+                  child:
+                      PauseButton(constraints.maxWidth, constraints.maxHeight),
                 ),
               ],
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(smallScreenPadding),
-            child: PauseButton(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth >= isDesktopWidth ||
-              constraints.maxHeight >= isDesktopHeight) {
-            return gameFinishDesktop();
-          } else {
-            return gameFinishMobile();
-          }
+          );
         },
       ),
     );
