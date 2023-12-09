@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:i18n_extension/i18n_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/constants.dart';
+import '../get_images/get_images.dart';
 import '../models/game_symbol.dart';
 import '../models/operators.dart';
 import '../util/audio_player_handler.dart';
@@ -47,6 +49,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentLocale = I18n.of(context).locale;
     final audioPlayerProvider = Provider.of<AudioPlayerProvider>(
       context,
       listen: false,
@@ -131,9 +134,9 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: const AssetImage(
-                                'assets/images/hr/button_sets.png'),
-                            width: signWidth,
+                            image: getDifferentSetsGameImage(
+                              currentLocale.languageCode,
+                            ),
                             height: signHeight,
                           ),
                         ),
@@ -191,8 +194,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: const AssetImage(
-                                'assets/images/hr/button_settings.png'),
+                            image: getSettingsImage(currentLocale.languageCode),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -226,9 +228,7 @@ class _HomePageState extends State<HomePage> {
                             ? currentHeight * 0.6
                             : currentHeight * 0.75,
                         width: currentWidth * 0.6,
-                        image: const AssetImage(
-                          'assets/images/hr/logo.png',
-                        ),
+                        image: getLogoImage(currentLocale.languageCode),
                       ),
                     ),
                   )
