@@ -8,9 +8,10 @@ class RadioButtonSymbols extends StatefulWidget {
   GameSymbol value;
   Function(int value) tasksCallback;
   int maxOperationNumber;
+  double maxWidth;
 
   RadioButtonSymbols(this.symbolCallback, this.value, this.tasksCallback,
-      this.maxOperationNumber,
+      this.maxOperationNumber, this.maxWidth,
       {Key? key})
       : super(key: key);
 
@@ -22,7 +23,7 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
   Widget customRadioButton(GameSymbol symbolValue) {
     // Used SizedBox with fixed width to center the widget
     return SizedBox(
-      width: 80,
+      width: (widget.maxWidth / 2) / 5,
       height: 40,
       child: OutlinedButton(
         onPressed: () {
