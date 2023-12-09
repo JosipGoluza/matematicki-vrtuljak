@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:i18n_extension/i18n_widget.dart';
+import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_answers.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_language.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_music.dart';
@@ -16,7 +17,6 @@ import '../models/game_symbol.dart';
 import '../models/language.dart';
 import '../models/operators.dart';
 import '../models/settings_model.dart';
-import '../my_widgets/pause_button.dart';
 import '../settings_widgets/radio_button_operations.dart';
 import '../util/audio_player_handler.dart';
 
@@ -194,7 +194,8 @@ class _SettingsState extends State<Settings> {
                                   {showAlertDialog(context)}
                                 else
                                   {
-                                    I18n.of(context).locale = getLanguageFromName(
+                                    I18n.of(context).locale =
+                                        getLanguageFromName(
                                       sharedPrefs.languageOptions,
                                     ),
                                     goHome(context)
@@ -218,7 +219,7 @@ class _SettingsState extends State<Settings> {
               ),
               Padding(
                 padding: const EdgeInsets.all(smallScreenPadding),
-                child: PauseButton(constraints.maxWidth, constraints.maxHeight),
+                child: ExitButton(constraints.maxWidth, constraints.maxHeight),
               ),
             ],
           );

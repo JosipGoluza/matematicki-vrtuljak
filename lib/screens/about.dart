@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
 import 'package:url_launcher/link.dart';
 
 import '../constants/constants.dart';
-import '../my_widgets/pause_button.dart';
 
 class About extends StatelessWidget {
   const About({Key? key}) : super(key: key);
@@ -89,7 +89,7 @@ class About extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(smallScreenPadding),
-                child: PauseButton(constraints.maxWidth, constraints.maxHeight),
+                child: ExitButton(constraints.maxWidth, constraints.maxHeight),
               ),
             ],
           );
