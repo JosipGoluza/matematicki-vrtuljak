@@ -74,19 +74,6 @@ class _DynamicEmptyContainerState extends State<DynamicEmptyContainer>
                 ),
         ),
       );
-      // return PlayAnimationBuilder<double>(
-      //   tween: Tween(begin: 0.0, end: endValue),
-      //   duration: const Duration(seconds: 2),
-      //   curve: Curves.easeOut,
-      //   builder: (context, value, child) {
-      //     return Container(
-      //       height: value,
-      //       width: value,
-      //       color: widget.boxColor,
-      //       child: child,
-      //     );
-      //   },
-      // );
     }
   }
 }

@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/models/game_symbol.dart';
 
+import '../../util/generate_random_number_around.dart';
+
 class WoodenAnswers extends StatefulWidget {
   double height;
   double width;
@@ -30,15 +32,20 @@ class WoodenAnswers extends StatefulWidget {
 class _WoodenAnswersState extends State<WoodenAnswers> {
   List<int> numberList = [];
   List<bool> guessedList = [];
+  int maxDistance = 10;
 
   void initializeList() {
-    Random randomizer = Random();
     numberList.add(widget.correctAnswer);
     guessedList = List.filled(widget.numberOfAnswers, false);
     while (numberList.length < widget.numberOfAnswers) {
-      int randomNumber = randomizer.nextInt(widget.maxAnswerNumber) + 1;
-      if (!numberList.contains(randomNumber)) {
-        numberList.add(randomNumber);
+      int randomValue = generateRandomNumberAround(
+        widget.correctAnswer,
+        maxDistance,
+      );
+      if (!numberList.contains(randomValue) &&
+          randomValue > 0 &&
+          randomValue <= widget.maxAnswerNumber) {
+        numberList.add(randomValue);
       }
     }
     numberList.shuffle();
@@ -67,8 +74,8 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
                 opacity: guessedList[index] ? 0.5 : 1,
                 child: Center(
                   child: InkWell(
-                    onTap:  () async {
-                      if(guessedList[index] == true) return;
+                    onTap: () async {
+                      if (guessedList[index] == true) return;
                       if (numberList[index] == widget.correctAnswer) {
                         await widget.answerBoxCallback(Colors.green);
                       } else {
