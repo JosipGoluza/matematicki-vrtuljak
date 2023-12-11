@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/my_widgets/wooden_answers.dart';
+import 'package:matematicki_vrtuljak/my_widgets/wooden_answers/wooden_answers.dart';
 
 import '../before_game/generate_before_start.dart';
 import '../constants/constants.dart';
@@ -7,6 +7,7 @@ import '../models/start_numbers_game_model.dart';
 import '../my_widgets/dynamic_empty_container.dart';
 import '../my_widgets/item_pictures/numbers_item_pictures.dart';
 import '../my_widgets/pause_button.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class Numbers extends StatefulWidget {
   StartNumbersGameModel startGameModel;

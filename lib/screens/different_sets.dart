@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/my_widgets/dynamic_empty_container.dart';
+import 'package:matematicki_vrtuljak/my_widgets/wooden_answers/wooden_answers_different_sets.dart';
 
 import '../before_game/generate_before_start.dart';
 import '../constants/constants.dart';
@@ -107,74 +108,13 @@ class _DifferentSetsState extends State<DifferentSets> {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              width: constraints.maxWidth * 0.2,
-                              height: constraints.maxHeight * 0.2,
-                              child: InkWell(
-                                onTap: () async {
-                                  if (widget.startGameModel.correctAnswer ==
-                                      widget.startGameModel.otherAnswer) {
-                                    await answerBoxCallback(Colors.green);
-                                  } else {
-                                    answerBoxCallback(Colors.red);
-                                  }
-                                },
-                                child: const Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Image(
-                                        fit: BoxFit.fill,
-                                        image: AssetImage(
-                                          'assets/images/sign.png',
-                                        ),
-                                      ),
-                                      Image(
-                                        fit: BoxFit.fill,
-                                        image: AssetImage(
-                                          'assets/images/equal.png',
-                                        ),
-                                      ),
-                                    ]),
-                              ),
-                            ),
-                            SizedBox(
-                              width: constraints.maxWidth * 0.1,
-                            ),
-                            SizedBox(
-                              width: constraints.maxWidth * 0.2,
-                              height: constraints.maxHeight * 0.2,
-                              child: InkWell(
-                                onTap: () async {
-                                  if (widget.startGameModel.correctAnswer !=
-                                      widget.startGameModel.otherAnswer) {
-                                    await answerBoxCallback(Colors.green);
-                                  } else {
-                                    answerBoxCallback(Colors.red);
-                                  }
-                                },
-                                child: const Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Image(
-                                        fit: BoxFit.fill,
-                                        image: AssetImage(
-                                          'assets/images/sign.png',
-                                        ),
-                                      ),
-                                      Image(
-                                        fit: BoxFit.fill,
-                                        image: AssetImage(
-                                          'assets/images/not_equal.png',
-                                        ),
-                                      ),
-                                    ]),
-                              ),
-                            ),
-                          ],
-                        ),
+                        WoodenAnswersDifferentSets(
+                          height: constraints.maxHeight * 0.2,
+                          width: constraints.maxWidth * 0.5,
+                          startGameModel: widget.startGameModel,
+                          // correctAnswer: widget.startGameModel.correctAnswer,
+                          answerBoxCallback: answerBoxCallback,
+                          ),
                       ],
                     ),
                   ),

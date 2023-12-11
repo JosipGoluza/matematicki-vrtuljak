@@ -6,7 +6,7 @@ import '../constants/constants.dart';
 import '../my_widgets/dynamic_empty_container.dart';
 import '../my_widgets/pause_button.dart';
 import '../my_widgets/static_empty_container.dart';
-import '../my_widgets/wooden_answers.dart';
+import '../my_widgets/wooden_answers/wooden_answers.dart';
 
 class Operations extends StatefulWidget {
   StartOperationsGameModel startGameModel;
