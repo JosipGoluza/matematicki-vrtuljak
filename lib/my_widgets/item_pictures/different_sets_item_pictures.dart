@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DifferentSetsItemPictures extends StatelessWidget {
+class DifferentSetsItemPictures extends StatefulWidget {
   double height;
   double width;
   String imageName;
@@ -17,20 +17,28 @@ class DifferentSetsItemPictures extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<DifferentSetsItemPictures> createState() =>
+      _DifferentSetsItemPicturesState();
+}
+
+class _DifferentSetsItemPicturesState extends State<DifferentSetsItemPictures> {
+  int? tappedIndex;
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
-      width: width,
+      height: widget.height,
+      width: widget.width,
       child: Center(
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: answer > 5 ? 2 : 1,
-            mainAxisExtent: imageSize,
+            crossAxisCount: widget.answer > 5 ? 2 : 1,
+            mainAxisExtent: widget.imageSize,
             childAspectRatio: 1,
           ),
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: answer,
+          itemCount: widget.answer,
           itemBuilder: (context, index) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,15 +46,50 @@ class DifferentSetsItemPictures extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    print((index + 1).toString());
+                    setState(() {
+                      tappedIndex = index;
+                    });
+
+                    Future.delayed(const Duration(milliseconds: 500), () {
+                      // Reset tappedIndex after 500 milliseconds (5 seconds)
+                      setState(() {
+                        tappedIndex = null;
+                      });
+                    });
                   },
-                  child: Image(
-                    fit: BoxFit.fill,
-                    width: imageSize,
-                    height: imageSize,
-                    image: AssetImage(
-                      'assets/images/game_icons/$imageName',
-                    ),
+                  child: Stack(
+                    children: [
+                      Image(
+                        fit: BoxFit.fill,
+                        width: widget.imageSize,
+                        height: widget.imageSize,
+                        image: AssetImage(
+                          'assets/images/game_icons/${widget.imageName}',
+                        ),
+                      ),
+                      if (tappedIndex != null && tappedIndex == index)
+                        Center(
+                          child: Container(
+                            width: widget.imageSize,
+                            height: widget.imageSize,
+                            color: Colors.green.withOpacity(0.5),
+                            child: AnimatedOpacity(
+                              opacity: 1.0,
+                              duration: const Duration(milliseconds: 500),
+                              child: Center(
+                                child: Text(
+                                  (index + 1).toString(),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: widget.imageSize * 0.5,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ],
