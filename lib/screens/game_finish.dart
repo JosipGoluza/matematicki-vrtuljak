@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/models/game_finish_model.dart';
+import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
 
 import '../constants/constants.dart';
-import '../my_widgets/pause_button.dart';
 
 class GameFinish extends StatefulWidget {
   GameFinishModel gameFinishModel;
@@ -135,7 +135,7 @@ class _GameFinishState extends State<GameFinish> {
                 Padding(
                   padding: const EdgeInsets.all(smallScreenPadding),
                   child:
-                      PauseButton(constraints.maxWidth, constraints.maxHeight),
+                      ExitButton(constraints.maxWidth, constraints.maxHeight),
                 ),
               ],
             ),

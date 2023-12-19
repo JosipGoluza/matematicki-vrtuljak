@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/my_widgets/dynamic_empty_container.dart';
 import 'package:matematicki_vrtuljak/my_widgets/wooden_answers/wooden_answers_different_sets.dart';
 
@@ -6,7 +7,8 @@ import '../before_game/generate_before_start.dart';
 import '../constants/constants.dart';
 import '../models/start_different_sets_game_model.dart';
 import '../my_widgets/item_pictures/different_sets_item_pictures.dart';
-import '../my_widgets/pause_button.dart';
+import '../my_widgets/pause/pause_button.dart';
+import '../util/time.dart';
 
 class DifferentSets extends StatefulWidget {
   StartDifferentSetsGameModel startGameModel;
@@ -22,6 +24,18 @@ class DifferentSets extends StatefulWidget {
 
 class _DifferentSetsState extends State<DifferentSets> {
   Color answerBoxColor = Colors.transparent;
+
+  exitButtonCallback() {
+    context.go('/');
+  }
+
+  restartButtonCallback() {
+    startTimer(
+      context,
+      '/different_sets',
+      widget.startGameModel.numberOfRounds,
+    ); // Restart the game
+  }
 
   answerBoxCallback(Color value) {
     setState(() {
@@ -114,15 +128,20 @@ class _DifferentSetsState extends State<DifferentSets> {
                           startGameModel: widget.startGameModel,
                           // correctAnswer: widget.startGameModel.correctAnswer,
                           answerBoxCallback: answerBoxCallback,
-                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(smallScreenPadding),
-                  child:
-                      PauseButton(constraints.maxWidth, constraints.maxHeight),
+                  child: PauseButton(
+                    constraints.maxWidth,
+                    constraints.maxHeight,
+                    '/different_sets',
+                    restartButtonCallback,
+                    exitButtonCallback,
+                  ),
                 ),
               ],
             ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/before_game/generate_before_start_operations.dart';
 import 'package:matematicki_vrtuljak/models/start_operations_game_model.dart';
 
 import '../constants/constants.dart';
 import '../my_widgets/dynamic_empty_container.dart';
-import '../my_widgets/pause_button.dart';
+import '../my_widgets/pause/pause_button.dart';
 import '../my_widgets/static_empty_container.dart';
 import '../my_widgets/wooden_answers/wooden_answers.dart';
+import '../util/time.dart';
 
 class Operations extends StatefulWidget {
   StartOperationsGameModel startGameModel;
@@ -22,6 +24,22 @@ class Operations extends StatefulWidget {
 
 class _OperationsState extends State<Operations> {
   Color answerBoxColor = Colors.transparent;
+
+  exitButtonCallback() {
+    context.go('/');
+  }
+
+  restartButtonCallback() {
+    startTimerOperators(
+      context,
+      widget.startGameModel.path,
+      widget.startGameModel.numberOfRounds,
+      widget.startGameModel.numberOfAnswers,
+      widget.startGameModel.operators,
+      widget.startGameModel.gameSymbol,
+      widget.startGameModel.maxOperationNumber,
+    );
+  }
 
   answerBoxCallback(Color value) {
     setState(() {
@@ -81,28 +99,39 @@ class _OperationsState extends State<Operations> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(smallScreenPadding),
-                        child: PauseButton(constraints.maxWidth, constraints.maxHeight),
+                        child: PauseButton(
+                          constraints.maxWidth,
+                          constraints.maxHeight,
+                          widget.startGameModel.path,
+                          restartButtonCallback,
+                          exitButtonCallback,
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           StaticEmptyContainer(
-                            height: constraints.maxHeight * operationsContainerHeightScale,
-                            width: constraints.maxWidth * operationsContainerWidthScale,
+                            height: constraints.maxHeight *
+                                operationsContainerHeightScale,
+                            width: constraints.maxWidth *
+                                operationsContainerWidthScale,
                             gameSymbol: widget.startGameModel.gameSymbol,
-                            containerNumber:
-                                widget.startGameModel.operationValues.firstNumber,
+                            containerNumber: widget
+                                .startGameModel.operationValues.firstNumber,
                           ),
                           Text(
-                            widget.startGameModel.operationValues.operator.value,
+                            widget
+                                .startGameModel.operationValues.operator.value,
                             style: TextStyle(
                               fontSize: constraints.maxHeight * 0.10,
                             ),
                           ),
                           StaticEmptyContainer(
-                            height: constraints.maxHeight * operationsContainerHeightScale,
-                            width: constraints.maxWidth * operationsContainerWidthScale,
+                            height: constraints.maxHeight *
+                                operationsContainerHeightScale,
+                            width: constraints.maxWidth *
+                                operationsContainerWidthScale,
                             gameSymbol: widget.startGameModel.gameSymbol,
                             containerNumber: widget
                                 .startGameModel.operationValues.secondNumber,
@@ -114,8 +143,10 @@ class _OperationsState extends State<Operations> {
                             ),
                           ),
                           DynamicEmptyContainer(
-                            height: constraints.maxHeight * operationsContainerHeightScale,
-                            width: constraints.maxWidth * operationsContainerWidthScale,
+                            height: constraints.maxHeight *
+                                operationsContainerHeightScale,
+                            width: constraints.maxWidth *
+                                operationsContainerWidthScale,
                             boxColor: answerBoxColor,
                           ),
                         ],
@@ -131,7 +162,8 @@ class _OperationsState extends State<Operations> {
                                 .startGameModel.operationValues.operationResult,
                             numberOfAnswers:
                                 widget.startGameModel.numberOfAnswers,
-                            maxAnswerNumber: widget.startGameModel.gameSymbol.max,
+                            maxAnswerNumber:
+                                widget.startGameModel.gameSymbol.max,
                             gameSymbol: widget.startGameModel.gameSymbol,
                             answerBoxCallback: answerBoxCallback,
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/my_widgets/wooden_answers/wooden_answers.dart';
 
 import '../before_game/generate_before_start.dart';
@@ -6,7 +7,8 @@ import '../constants/constants.dart';
 import '../models/start_numbers_game_model.dart';
 import '../my_widgets/dynamic_empty_container.dart';
 import '../my_widgets/item_pictures/numbers_item_pictures.dart';
-import '../my_widgets/pause_button.dart';
+import '../my_widgets/pause/pause_button.dart';
+import '../util/time.dart';
 
 class Numbers extends StatefulWidget {
   StartNumbersGameModel startGameModel;
@@ -22,6 +24,19 @@ class Numbers extends StatefulWidget {
 
 class _NumbersState extends State<Numbers> {
   Color answerBoxColor = Colors.transparent;
+
+  exitButtonCallback() {
+    context.go('/');
+  }
+
+  restartButtonCallback() {
+    startTimer(
+      context,
+      '/numbers',
+      widget.startGameModel.numberOfRounds,
+      widget.startGameModel.numberOfAnswers,
+    );
+  }
 
   answerBoxCallback(Color value) {
     setState(() {
@@ -89,7 +104,8 @@ class _NumbersState extends State<Numbers> {
                               height: constraints.maxHeight * 0.2,
                               width: constraints.maxWidth * 0.85,
                               imageName: widget.startGameModel.imageName,
-                              correctAnswer: 10,
+                              correctAnswer:
+                                  widget.startGameModel.correctAnswer,
                               imageSize: constraints.maxWidth * 0.083,
                             ),
                             DynamicEmptyContainer(
@@ -115,7 +131,13 @@ class _NumbersState extends State<Numbers> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(smallScreenPadding),
-                  child: PauseButton(constraints.maxWidth, constraints.maxHeight),
+                  child: PauseButton(
+                    constraints.maxWidth,
+                    constraints.maxHeight,
+                    "/numbers",
+                    restartButtonCallback,
+                    exitButtonCallback,
+                  ),
                 ),
               ],
             ),
