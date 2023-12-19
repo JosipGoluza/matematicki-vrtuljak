@@ -25,6 +25,11 @@ class SplashScreenState extends StatefulWidget {
 class _SplashScreenStateState extends State<SplashScreenState> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen.withScreenFunction(

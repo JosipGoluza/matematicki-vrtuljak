@@ -18,7 +18,8 @@ const carouselPositioning = 0.19;
 const isDesktopWidth = 1440;
 const isDesktopHeight = 500;
 
-const pauseButtonSizeScale = 15.0;
+const pauseButtonSizeScaleWidth = 17.0;
+const pauseButtonSizeScaleHeight = 13;
 
 const operationsContainerHeightScale = 0.20;
 const operationsContainerWidthScale = 0.20;

@@ -89,8 +89,7 @@ class _NumbersState extends State<Numbers> {
                               height: constraints.maxHeight * 0.2,
                               width: constraints.maxWidth * 0.85,
                               imageName: widget.startGameModel.imageName,
-                              correctAnswer:
-                                  widget.startGameModel.correctAnswer,
+                              correctAnswer: 10,
                               imageSize: constraints.maxWidth * 0.083,
                             ),
                             DynamicEmptyContainer(

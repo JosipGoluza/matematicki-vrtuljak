@@ -26,8 +26,10 @@ class _PauseButtonState extends State<PauseButton> {
         },
         child: Image(
           fit: BoxFit.fill,
-          width: min(widget.maxWidth, widget.maxHeight) / pauseButtonSizeScale,
-          height: min(widget.maxWidth, widget.maxHeight) / pauseButtonSizeScale,
+          width: min(widget.maxWidth / pauseButtonSizeScaleWidth,
+              widget.maxHeight / pauseButtonSizeScaleHeight),
+          height: min(widget.maxWidth / pauseButtonSizeScaleWidth,
+              widget.maxHeight / pauseButtonSizeScaleHeight),
           image: const AssetImage(
             'assets/images/button_pause.png',
           ),
