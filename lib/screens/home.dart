@@ -113,13 +113,11 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             startTimer(context, '/numbers', numberOfRounds,
                                 numberOfAnswers);
-                            // generateBeforeStart(context, '/numbers',
-                            //     numberOfRounds, numberOfAnswers);
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: const AssetImage(
-                                'assets/images/hr/button_numbers.png'),
+                            image:
+                                getNumbersGameImage(currentLocale.languageCode),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -138,6 +136,7 @@ class _HomePageState extends State<HomePage> {
                               currentLocale.languageCode,
                             ),
                             height: signHeight,
+                            width: signWidth,
                           ),
                         ),
                         const SizedBox(
@@ -156,8 +155,8 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: const AssetImage(
-                                'assets/images/hr/button_operations_10.png'),
+                            image: getOperationsToTenGameImage(
+                                currentLocale.languageCode),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -179,8 +178,8 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: const AssetImage(
-                                'assets/images/hr/button_operations.png'),
+                            image: getOperationsGameImage(
+                                currentLocale.languageCode),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -208,9 +207,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: const AssetImage(
-                              'assets/images/hr/button_about.png',
-                            ),
+                            image: getAboutImage(currentLocale.languageCode),
                             width: signWidth,
                             height: signHeight,
                           ),

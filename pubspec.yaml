@@ -76,21 +76,21 @@ flutter:
     # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/images/hr/
-    - assets/images/en/
-    - assets/images/es/
     - assets/images/game_icons/
     - assets/images/tree/
     - assets/images/apples/
-    - assets/images/hu/
     - assets/images/launcher/
-    - assets/images/pt/
     - assets/audio/
     - assets/images/language_icon/
-    - assets/images/logo/
-    - assets/images/different_sets/
-    - assets/images/settings/
     - assets/images/pause_dialog/
+    - assets/images/localization_images/about/
+    - assets/images/localization_images/different_sets/
+    - assets/images/localization_images/logo/
+    - assets/images/localization_images/numbers/
+    - assets/images/localization_images/operations/
+    - assets/images/localization_images/operations_to_ten/
+    - assets/images/localization_images/settings/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
