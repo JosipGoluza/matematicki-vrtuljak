@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../localizations/pause_localization.dart';
+
 class ResumeButton extends StatefulWidget {
   const ResumeButton({super.key});
 
@@ -25,10 +27,10 @@ class _ResumeButtonState extends State<ResumeButton> {
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero, // Remove padding
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            'NASTAVI',
-            style: TextStyle(
+            continue_.i18n,
+            style: const TextStyle(
               color: Colors.black, // Text color
               fontWeight: FontWeight.bold,
             ),

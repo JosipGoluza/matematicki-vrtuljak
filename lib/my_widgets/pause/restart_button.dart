@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../localizations/pause_localization.dart';
+
 class RestartButton extends StatefulWidget {
   Function() restartButtonCallback;
 
@@ -28,10 +30,10 @@ class _RestartButtonState extends State<RestartButton> {
         // style: ElevatedButton.styleFrom(
         //   backgroundColor: Colors.transparent, // Set background color to transparent
         // ),
-        child: const Center(
+        child: Center(
           child: Text(
-            'IGRAJ PONOVO',
-            style: TextStyle(
+            playAgain.i18n,
+            style: const TextStyle(
               color: Colors.black, // Text color
               fontWeight: FontWeight.bold,
             ),

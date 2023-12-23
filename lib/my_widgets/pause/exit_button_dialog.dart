@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
+import '../../localizations/pause_localization.dart';
 
 class ExitButtonDialog extends StatefulWidget {
   Function() exitButtonCallback;
@@ -29,10 +30,10 @@ class _ExitButtonDialogState extends State<ExitButtonDialog> {
         // style: ElevatedButton.styleFrom(
         //   backgroundColor: Colors.transparent, // Set background color to transparent
         // ),
-        child: const Center(
+        child: Center(
           child: Text(
-            'POČETNI MENI',
-            style: TextStyle(
+            mainMenu.i18n,
+            style: const TextStyle(
               color: Colors.black, // Text color
               fontWeight: FontWeight.bold,
             ),

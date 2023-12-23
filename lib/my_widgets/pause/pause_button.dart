@@ -5,6 +5,7 @@ import 'package:matematicki_vrtuljak/my_widgets/pause/restart_button.dart';
 import 'package:matematicki_vrtuljak/my_widgets/pause/resume_button.dart';
 
 import '../../constants/constants.dart';
+import '../../localizations/pause_localization.dart';
 import 'exit_button_dialog.dart';
 
 class PauseButton extends StatefulWidget {
@@ -60,9 +61,9 @@ class _PauseButtonState extends State<PauseButton> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                "Pauza",
-                style: TextStyle(
+              Text(
+                pause.i18n,
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
