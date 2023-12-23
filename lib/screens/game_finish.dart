@@ -4,6 +4,8 @@ import 'package:matematicki_vrtuljak/models/game_finish_model.dart';
 import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
 
 import '../constants/constants.dart';
+import '../localizations/game_finish_localization.dart';
+import '../my_widgets/game_finish/restart_new_game.dart';
 
 class GameFinish extends StatefulWidget {
   GameFinishModel gameFinishModel;
@@ -21,9 +23,9 @@ class _GameFinishState extends State<GameFinish> {
   Widget correctGuesses() {
     return Row(
       children: [
-        const Expanded(
+        Expanded(
             child: Text(
-          'BROJ POGODAKA',
+          numberOfHits.i18n,
           textAlign: TextAlign.end,
         )),
         const SizedBox(
@@ -42,9 +44,9 @@ class _GameFinishState extends State<GameFinish> {
   Widget wrongGuesses() {
     return Row(
       children: [
-        const Expanded(
+        Expanded(
             child: Text(
-          'BROJ PROMAŠAJA',
+          numberOfMisses.i18n,
           textAlign: TextAlign.end,
         )),
         const SizedBox(
@@ -63,9 +65,9 @@ class _GameFinishState extends State<GameFinish> {
   Widget timeTaken() {
     return Row(
       children: [
-        const Expanded(
+        Expanded(
             child: Text(
-          'UKUPNO VRIJEME',
+          totalTime.i18n,
           textAlign: TextAlign.end,
         )),
         const SizedBox(
@@ -95,9 +97,9 @@ class _GameFinishState extends State<GameFinish> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'IGRA GOTOVA',
-                        style: TextStyle(
+                      Text(
+                        gameOver.i18n,
+                        style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
@@ -116,17 +118,18 @@ class _GameFinishState extends State<GameFinish> {
                             onPressed: () => {
                               context.go('/'),
                             },
-                            child: const Text('POVRATAK'),
+                            child: Text(return_.i18n),
                           ),
-                          // DODATI NOVU IGRU !!!
-                          // const SizedBox(width: 10),
-                          // ElevatedButton(
-                          //   onPressed: () => {
-                          //     context.go('/'),
-                          //   },
-                          //   // dodati novu igru
-                          //   child: const Text('IGRAJ PONOVNO'),
-                          // ),
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                            onPressed: () => {
+                              restartNewGame(
+                                context,
+                                widget.gameFinishModel.path,
+                              ),
+                            },
+                            child: Text(playAgain.i18n),
+                          ),
                         ],
                       ),
                     ],

@@ -26,7 +26,7 @@ class UserPreferences {
     final symbolNamePrefs =
         prefs.getString('symbol') ?? GameSymbol.numbers.name;
     final symbolName = getSymbolFromName(symbolNamePrefs);
-    final maxOperationNumber = prefs.getInt('maxOperationNumber') ?? 2;
+    final maxOperationNumber = prefs.getInt('maxOperationNumber') ?? 5;
     final currentOperatorsPrefs =
         prefs.getStringList('currentOperators') ?? ['+', '-'];
     final currentOperators = getOperatorFromValue(currentOperatorsPrefs);

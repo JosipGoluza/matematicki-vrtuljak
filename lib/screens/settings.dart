@@ -39,7 +39,7 @@ class _SettingsState extends State<Settings> {
     numberOfAnswers: 2,
     musicEnabled: false,
     currentSymbol: GameSymbol.numbers,
-    maxOperationNumber: 2,
+    maxOperationNumber: 5,
     currentOperators: [Operators.add, Operators.subtract],
     languageOptions: LanguageOptions.english,
   );

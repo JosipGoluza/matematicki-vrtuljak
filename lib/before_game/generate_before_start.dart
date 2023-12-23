@@ -19,6 +19,7 @@ void generateBeforeStart(BuildContext context, String path, int numberOfRounds,
         correctGuesses: correctGuesses,
         wrongGuesses: wrongGuesses,
         timeElapsed: stopwatch.elapsed,
+        path: path,
       ),
     );
   } else {

@@ -28,6 +28,7 @@ void generateBeforeStartOperations(
         correctGuesses: correctGuesses,
         wrongGuesses: wrongGuesses,
         timeElapsed: stopwatch.elapsed,
+        path: path,
       ),
     );
   } else {
