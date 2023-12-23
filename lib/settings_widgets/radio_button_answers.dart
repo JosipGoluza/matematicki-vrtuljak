@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/constants/constants.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 
 class RadioButtonAnswers extends StatefulWidget {
   Function(int value) answersCallback;
@@ -54,10 +55,10 @@ class _RadioButtonAnswersState extends State<RadioButtonAnswers> {
         Expanded(
             flex: 1,
             child: Text(
-              'BROJ ODGOVORA',
+              numberOfAnswersLocalization.i18n,
               textAlign: TextAlign.end,
               style: TextStyle(
-                fontSize: widget.maxWidth / 55,
+                fontSize: widget.maxWidth / settingsFontSize,
                 fontWeight: FontWeight.bold,
               ),
             )),

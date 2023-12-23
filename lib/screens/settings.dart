@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:i18n_extension/i18n_widget.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_answers.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_language.dart';
@@ -118,16 +119,17 @@ class _SettingsState extends State<Settings> {
           return Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Center(
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'POSTAVKE',
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize:
+                                constraints.maxWidth / settingsFontSizeTitle,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -156,10 +158,11 @@ class _SettingsState extends State<Settings> {
                           constraints.maxWidth,
                         ),
                         const SizedBox(height: 15),
-                        const Text(
-                          "POSTAVKE ZA IGRU \"OPERACIJE\"",
+                        Text(
+                          operationGameSettings.i18n,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize:
+                                constraints.maxWidth / settingsFontSizeTitle,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -205,11 +208,13 @@ class _SettingsState extends State<Settings> {
                             ),
                             const SizedBox(width: 10),
                             ElevatedButton(
-                              onPressed: () => {
-                                context.go('/'),
-                              },
-                              child: const Text('Cancel'),
-                            ),
+                                onPressed: () => {
+                                      context.go('/'),
+                                    },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.red,
+                                ),
+                                child: const Text('Cancel')),
                           ],
                         ),
                       ],

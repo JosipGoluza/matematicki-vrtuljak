@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 
 import '../constants/constants.dart';
 
@@ -16,7 +17,7 @@ class RadioButtonMusic extends StatefulWidget {
 
 class _RadioButtonMusicState extends State<RadioButtonMusic> {
   Widget customRadioButton(bool musicValue) {
-    var text = musicValue ? 'DA' : 'NE';
+    var text = musicValue ? yes.i18n : no.i18n;
     // Used SizedBox with fixed width to center the widget
     return SizedBox(
       width: (widget.maxWidth) / 7,
@@ -55,10 +56,10 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
         Expanded(
           flex: 1,
           child: Text(
-            'GLAZBA',
+            music.i18n,
             textAlign: TextAlign.end,
             style: TextStyle(
-              fontSize: widget.maxWidth / 55,
+              fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
           ),

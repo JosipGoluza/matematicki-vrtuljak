@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/models/language.dart';
-import 'package:matematicki_vrtuljak/settings_widgets/settings_widgets_localization.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 
 import '../constants/constants.dart';
 
@@ -75,7 +75,7 @@ class RadioButtonLanguageState extends State<RadioButtonLanguage> {
             selectLanguage.i18n,
             textAlign: TextAlign.end,
             style: TextStyle(
-              fontSize: widget.maxWidth / 55,
+              fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
           ),

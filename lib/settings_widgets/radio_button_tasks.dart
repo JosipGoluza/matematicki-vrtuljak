@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 import '../constants/constants.dart';
+import '../localizations/settings_widgets_localization.dart';
 import '../models/game_symbol.dart';
 
 class RadioButtonTasks extends StatefulWidget {
@@ -51,10 +52,10 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
       children: [
         // expanded da odvoji tekst od radio buttona i poravna sve u sredinu
         Text(
-          'ZADACI DO BROJA',
+          tasksUpToNumber.i18n,
           textAlign: TextAlign.end,
           style: TextStyle(
-            fontSize: widget.maxWidth / 55,
+            fontSize: widget.maxWidth / settingsFontSize,
             fontWeight: FontWeight.bold,
           ),
         ),

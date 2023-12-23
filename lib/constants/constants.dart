@@ -26,3 +26,6 @@ const operationsContainerWidthScale = 0.20;
 
 const differentSetsItemPicturesHeightScale = 0.6;
 const differentSetsItemPicturesWidthScale = 0.25;
+
+const settingsFontSize = 65;
+const settingsFontSizeTitle = 30;

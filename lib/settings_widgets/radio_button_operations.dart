@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 import 'package:matematicki_vrtuljak/models/operators.dart';
 
 import '../constants/constants.dart';
@@ -8,7 +9,8 @@ class RadioButtonOperations extends StatefulWidget {
   List<Operators> value;
   double maxWidth;
 
-  RadioButtonOperations(this.operatorsCallback, this.value, this.maxWidth, {Key? key})
+  RadioButtonOperations(this.operatorsCallback, this.value, this.maxWidth,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -61,13 +63,13 @@ class _RadioButtonOperationsState extends State<RadioButtonOperations> {
         Expanded(
             flex: 1,
             child: Text(
-          'MOGUĆI OPERATORI',
-          textAlign: TextAlign.end,
+              enableOperations.i18n,
+              textAlign: TextAlign.end,
               style: TextStyle(
-                fontSize: widget.maxWidth / 55,
+                fontSize: widget.maxWidth / settingsFontSize,
                 fontWeight: FontWeight.bold,
               ),
-        )),
+            )),
         const SizedBox(
           width: settingsRowMargin,
         ),

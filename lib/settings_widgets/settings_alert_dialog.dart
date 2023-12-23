@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 
 showAlertDialog(BuildContext context) {
   // set up the button
   Widget okButton = TextButton(
-    child: const Text("OK"),
+    child: Text(ok.i18n),
     onPressed: () {
       Navigator.of(context, rootNavigator: true).pop();
     },
@@ -11,8 +12,8 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: const Text("Dodaj operator"),
-    content: const Text("Izaberite barem jednu operaciju."),
+    title: Text(addOperator.i18n),
+    content: Text(chooseAtLeastOneOperator.i18n),
     actions: [
       okButton,
     ],

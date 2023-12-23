@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
@@ -50,7 +51,7 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
         ),
         child: {
           GameSymbol.numbers: Text(
-            'Brojevi',
+            numbers.i18n,
             style: TextStyle(
               color:
                   (widget.value == symbolValue) ? Colors.white : Colors.black,
@@ -73,10 +74,10 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'BROJEVI ILI SIMBOLI',
+          numbersOrSymbols.i18n,
           textAlign: TextAlign.end,
           style: TextStyle(
-            fontSize: widget.maxWidth / 55,
+            fontSize: widget.maxWidth / settingsFontSize,
             fontWeight: FontWeight.bold,
           ),
         ),

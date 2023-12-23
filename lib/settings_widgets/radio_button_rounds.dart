@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 
 import '../constants/constants.dart';
 
@@ -63,10 +64,10 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
         Expanded(
           flex: 1,
           child: Text(
-            'BROJ ZADATAKA',
+            numberOfRoundsLocalization.i18n,
             textAlign: TextAlign.end,
             style: TextStyle(
-              fontSize: widget.maxWidth / 55,
+              fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
           ),
