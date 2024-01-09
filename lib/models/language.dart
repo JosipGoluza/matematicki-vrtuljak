@@ -31,3 +31,22 @@ getLanguageFromName(LanguageOptions language) {
       return const Locale('en', "US");
   }
 }
+
+getEnumValueFromName(String? name) {
+  switch (name) {
+    case 'en':
+      return LanguageOptions.english.name;
+    case 'hr':
+      return LanguageOptions.croatian.name;
+    case 'es':
+      return LanguageOptions.spanish.name;
+    case 'fr':
+      return LanguageOptions.french.name;
+    case 'pt':
+      return LanguageOptions.portuguese.name;
+    case 'hu':
+      return LanguageOptions.hungarian.name;
+    default:
+      return LanguageOptions.english.name;
+  }
+}

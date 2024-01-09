@@ -14,6 +14,7 @@ const ok = "ok";
 const addOperator = "addOperator";
 const chooseAtLeastOneOperator = "chooseAtLeastOneOperator";
 const operationGameSettings = "operationGameSettings";
+const settingsTitle = "settingsTitle";
 
 extension SettingsLocalization on String {
   static const _t = Translations.from("en_us", {
@@ -128,6 +129,14 @@ extension SettingsLocalization on String {
       "hr_hr": "POSTAVKE ZA IGRU \"OPERACIJE\"",
       "hu_hu": "A \"MŰVELETEK\" JÁTÉK BEÁLLÍTÁSAI",
       "pt_pt": "CONFIGURAÇÕES DO JOGO \"OPERAÇÕES\"",
+    },
+    settingsTitle: {
+      "en_us": "SETTINGS",
+      "es_es": "AJUSTES",
+      "fr_fr": "PARAMÈTRES",
+      "hr_hr": "POSTAVKE",
+      "hu_hu": "BEÁLLÍTÁSOK",
+      "pt_pt": "CONFIGURAÇÕES",
     },
   });
 

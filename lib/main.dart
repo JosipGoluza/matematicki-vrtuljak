@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
     return ChangeNotifierProvider(
       create: (context) => AudioPlayerProvider(),
       child: I18n(
-        initialLocale: locale,
+        // initialLocale: locale,
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: router,

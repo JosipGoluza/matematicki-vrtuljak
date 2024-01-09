@@ -126,7 +126,7 @@ class _SettingsState extends State<Settings> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'POSTAVKE',
+                          settingsTitle.i18n,
                           style: TextStyle(
                             fontSize:
                                 constraints.maxWidth / settingsFontSizeTitle,
