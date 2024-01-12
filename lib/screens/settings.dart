@@ -204,17 +204,20 @@ class _SettingsState extends State<Settings> {
                                     goHome(context)
                                   }
                               },
-                              child: const Text('Save settings'),
+                              child: Text(saveSettingsLocalization.i18n),
                             ),
                             const SizedBox(width: 10),
                             ElevatedButton(
-                                onPressed: () => {
-                                      context.go('/'),
-                                    },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.red,
-                                ),
-                                child: const Text('Cancel')),
+                              onPressed: () => {
+                                context.go('/'),
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                              ),
+                              child: Text(
+                                cancelSettingsLocalization.i18n,
+                              ),
+                            ),
                           ],
                         ),
                       ],

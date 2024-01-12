@@ -15,6 +15,8 @@ const addOperator = "addOperator";
 const chooseAtLeastOneOperator = "chooseAtLeastOneOperator";
 const operationGameSettings = "operationGameSettings";
 const settingsTitle = "settingsTitle";
+const saveSettingsLocalization = "saveSettingsLocalization";
+const cancelSettingsLocalization = "cancelSettingsLocalization";
 
 extension SettingsLocalization on String {
   static const _t = Translations.from("en_us", {
@@ -137,6 +139,22 @@ extension SettingsLocalization on String {
       "hr_hr": "POSTAVKE",
       "hu_hu": "BEÁLLÍTÁSOK",
       "pt_pt": "CONFIGURAÇÕES",
+    },
+    saveSettingsLocalization: {
+      "en_us": "SAVE",
+      "es_es": "SALVAR",
+      "fr_fr": "SAUVEGARDER",
+      "hr_hr": "SPREMI",
+      "hu_hu": "MENTÉS",
+      "pt_pt": "SALVAR",
+    },
+    cancelSettingsLocalization: {
+      "en_us": "CANCEL",
+      "es_es": "CANCELAR",
+      "fr_fr": "ANNULER",
+      "hr_hr": "ODUSTANI",
+      "hu_hu": "MÉGSEM",
+      "pt_pt": "CANCELAR",
     },
   });
 
