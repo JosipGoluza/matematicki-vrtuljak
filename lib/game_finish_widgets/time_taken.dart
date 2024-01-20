@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
 
 import '../constants/constants.dart';
-import '../localizations/game_finish_localization.dart';
 
 Widget timeTaken(
   String minutes,
   String seconds,
+  BuildContext context,
 ) {
   return Row(
     children: [
       Expanded(
           child: Text(
-        totalTime.i18n,
+        translation(context).totalTime,
         textAlign: TextAlign.end,
       )),
       const SizedBox(

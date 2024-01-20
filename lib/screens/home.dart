@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:i18n_extension/i18n_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final currentLocale = I18n.of(context).locale;
+    final currentLocale = Localizations.localeOf(context).toString();
     final audioPlayerProvider = Provider.of<AudioPlayerProvider>(
       context,
       listen: false,
@@ -116,8 +115,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image:
-                                getNumbersGameImage(currentLocale.languageCode),
+                            image: getNumbersGameImage(currentLocale),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -133,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                           child: Image(
                             fit: BoxFit.fill,
                             image: getDifferentSetsGameImage(
-                              currentLocale.languageCode,
+                              currentLocale,
                             ),
                             height: signHeight,
                             width: signWidth,
@@ -155,8 +153,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: getOperationsToTenGameImage(
-                                currentLocale.languageCode),
+                            image: getOperationsToTenGameImage(currentLocale),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -178,8 +175,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: getOperationsGameImage(
-                                currentLocale.languageCode),
+                            image: getOperationsGameImage(currentLocale),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -193,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: getSettingsImage(currentLocale.languageCode),
+                            image: getSettingsImage(currentLocale),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -207,7 +203,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image(
                             fit: BoxFit.fill,
-                            image: getAboutImage(currentLocale.languageCode),
+                            image: getAboutImage(currentLocale),
                             width: signWidth,
                             height: signHeight,
                           ),
@@ -225,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                             ? currentHeight * 0.6
                             : currentHeight * 0.75,
                         width: currentWidth * 0.6,
-                        image: getLogoImage(currentLocale.languageCode),
+                        image: getLogoImage(currentLocale),
                       ),
                     ),
                   )

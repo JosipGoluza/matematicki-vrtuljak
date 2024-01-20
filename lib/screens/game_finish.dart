@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/models/game_finish_model.dart';
 import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
 
 import '../constants/constants.dart';
 import '../game_finish_widgets/correct_guesses.dart';
 import '../game_finish_widgets/time_taken.dart';
 import '../game_finish_widgets/wrong_guesses.dart';
-import '../localizations/game_finish_localization.dart';
 import '../my_widgets/game_finish/restart_new_game.dart';
 
 class GameFinish extends StatefulWidget {
@@ -43,18 +43,18 @@ class _GameFinishState extends State<GameFinish> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        gameOver.i18n,
+                        translation(context).gameOver,
                         style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 20),
-                      correctGuesses(correctGuessesText),
+                      correctGuesses(correctGuessesText, context),
                       const SizedBox(height: 20),
-                      wrongGuesses(wrongGuessesText),
+                      wrongGuesses(wrongGuessesText, context),
                       const SizedBox(height: 20),
-                      timeTaken(minutesText, secondsText),
+                      timeTaken(minutesText, secondsText, context),
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +63,7 @@ class _GameFinishState extends State<GameFinish> {
                             onPressed: () => {
                               context.go('/'),
                             },
-                            child: Text(return_.i18n),
+                            child: Text(translation(context).gameFinishReturn),
                           ),
                           const SizedBox(width: 10),
                           ElevatedButton(
@@ -73,7 +73,7 @@ class _GameFinishState extends State<GameFinish> {
                                 path,
                               ),
                             },
-                            child: Text(playAgain.i18n),
+                            child: Text(translation(context).playAgain),
                           ),
                         ],
                       ),
@@ -124,18 +124,18 @@ class _GameFinishState extends State<GameFinish> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      gameOver.i18n,
+                      translation(context).gameOver,
                       style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    correctGuesses(correctGuessesText),
+                    correctGuesses(correctGuessesText, context),
                     const SizedBox(height: 20),
-                    wrongGuesses(wrongGuessesText),
+                    wrongGuesses(wrongGuessesText, context),
                     const SizedBox(height: 20),
-                    timeTaken(minutesText, secondsText),
+                    timeTaken(minutesText, secondsText, context),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +144,7 @@ class _GameFinishState extends State<GameFinish> {
                           onPressed: () => {
                             context.go('/'),
                           },
-                          child: Text(return_.i18n),
+                          child: Text(translation(context).gameFinishReturn),
                         ),
                         const SizedBox(width: 10),
                         ElevatedButton(
@@ -154,7 +154,7 @@ class _GameFinishState extends State<GameFinish> {
                               path,
                             ),
                           },
-                          child: Text(playAgain.i18n),
+                          child: Text(translation(context).playAgain),
                         ),
                       ],
                     ),

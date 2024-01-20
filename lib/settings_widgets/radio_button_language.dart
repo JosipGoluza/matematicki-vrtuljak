@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/models/language.dart';
-import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 
 import '../constants/constants.dart';
+import '../main.dart';
+import '../util/language_constants.dart';
+import '../util/user_preferences.dart';
 
 class RadioButtonLanguage extends StatefulWidget {
-  Function(LanguageOptions value) languageCallback;
-  LanguageOptions value;
   double maxWidth;
 
-  RadioButtonLanguage(this.languageCallback, this.value, this.maxWidth, {Key? key})
+  RadioButtonLanguage(this.maxWidth, {Key? key})
       : super(key: key);
 
   @override
@@ -17,21 +17,21 @@ class RadioButtonLanguage extends StatefulWidget {
 }
 
 class RadioButtonLanguageState extends State<RadioButtonLanguage> {
-  Widget customRadioButton(LanguageOptions languageValue) {
+  Widget customRadioButton(
+      LanguageOptions languageValue, String currentLocale) {
     return SizedBox(
       width: widget.maxWidth / 9,
       height: widget.maxWidth / 14,
       child: OutlinedButton(
-        onPressed: () {
-          setState(() {
-            widget.value = languageValue;
-          });
-          widget.languageCallback(widget.value);
+        onPressed: () async {
+          Locale _locale = await setLocale(getLanguageFromName(languageValue).languageCode);
+          MyApp.setLocale(context, (_locale));
         },
         style: OutlinedButton.styleFrom(
-          backgroundColor: (widget.value == languageValue)
-              ? Colors.blue
-              : Colors.transparent,
+          backgroundColor:
+              (currentLocale == getLanguageFromName(languageValue).languageCode.toString())
+                  ? Colors.blue
+                  : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -65,6 +65,7 @@ class RadioButtonLanguageState extends State<RadioButtonLanguage> {
 
   @override
   Widget build(BuildContext context) {
+    var currentLocale = Localizations.localeOf(context).toString();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -72,7 +73,7 @@ class RadioButtonLanguageState extends State<RadioButtonLanguage> {
         Expanded(
           flex: 1,
           child: Text(
-            selectLanguage.i18n,
+            translation(context).selectLanguage,
             textAlign: TextAlign.end,
             style: TextStyle(
               fontSize: widget.maxWidth / settingsFontSize,
@@ -89,7 +90,7 @@ class RadioButtonLanguageState extends State<RadioButtonLanguage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               for (var element in LanguageOptions.values)
-                customRadioButton(element)
+                customRadioButton(element, currentLocale)
             ],
           ),
         ),

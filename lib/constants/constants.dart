@@ -29,3 +29,6 @@ const differentSetsItemPicturesWidthScale = 0.25;
 
 const settingsFontSize = 65;
 const settingsFontSizeTitle = 30;
+
+const settingsButtonSizeWidth = 0.15;
+const settingsButtonSizeHeight = 0.07;

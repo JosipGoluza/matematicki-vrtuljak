@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
 
 import '../constants/constants.dart';
-import '../localizations/game_finish_localization.dart';
 
 Widget correctGuesses(
-  String correctGuessText,
+  String correctGuessText, BuildContext context,
 ) {
   return Row(
     children: [
       Expanded(
           child: Text(
-        numberOfHits.i18n,
+        translation(context).numberOfHits,
         textAlign: TextAlign.end,
       )),
       const SizedBox(

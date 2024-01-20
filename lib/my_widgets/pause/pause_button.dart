@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/my_widgets/pause/restart_button.dart';
 import 'package:matematicki_vrtuljak/my_widgets/pause/resume_button.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
 
 import '../../constants/constants.dart';
-import '../../localizations/pause_localization.dart';
 import 'exit_button_dialog.dart';
 
 class PauseButton extends StatefulWidget {
@@ -47,10 +47,10 @@ class _PauseButtonState extends State<PauseButton> {
     );
   }
 
-  Future<void> _showPauseDialog(BuildContext context) async {
+  Future<void> _showPauseDialog(BuildContext appContext) async {
     return showDialog(
-      context: context,
-      builder: (BuildContext context) {
+      context: appContext,
+      builder: (_) {
         return AlertDialog(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
@@ -62,7 +62,7 @@ class _PauseButtonState extends State<PauseButton> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                pause.i18n,
+                translation(appContext).pauseButton,
                 style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -70,17 +70,17 @@ class _PauseButtonState extends State<PauseButton> {
                 ),
               ),
               const SizedBox(height: 16),
-              const SizedBox(width: 200, height: 50, child: ResumeButton()),
+              SizedBox(width: 200, height: 50, child: ResumeButton(appContext)),
               const SizedBox(height: 12),
               SizedBox(
                   width: 200,
                   height: 50,
-                  child: RestartButton(widget.restartButtonCallback)),
+                  child: RestartButton(widget.restartButtonCallback, appContext)),
               const SizedBox(height: 12),
               SizedBox(
                   width: 200,
                   height: 50,
-                  child: ExitButtonDialog(widget.exitButtonCallback)),
+                  child: ExitButtonDialog(widget.exitButtonCallback, appContext)),
             ],
           ),
         );

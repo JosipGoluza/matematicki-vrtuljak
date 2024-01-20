@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
 import 'package:url_launcher/link.dart';
 
 import '../constants/constants.dart';
-import '../localizations/about_localization.dart';
 
 class About extends StatelessWidget {
   const About({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class About extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    about.i18n,
+                                    translation(context).about,
                                     style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
@@ -39,7 +39,7 @@ class About extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 20),
                                   Text(
-                                    aboutProject.i18n,
+                                    translation(context).aboutProject,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontSize: 20,
@@ -47,7 +47,7 @@ class About extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
-                                    elementsUsedFrom.i18n,
+                                    translation(context).elementsUsedFrom,
                                     style: const TextStyle(
                                       fontSize: 20,
                                     ),

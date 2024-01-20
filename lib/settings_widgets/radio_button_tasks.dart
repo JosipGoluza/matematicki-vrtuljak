@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 import '../constants/constants.dart';
-import '../localizations/settings_widgets_localization.dart';
 import '../models/game_symbol.dart';
+import '../util/language_constants.dart';
 
 class RadioButtonTasks extends StatefulWidget {
   Function(int value) tasksCallback;
@@ -11,7 +12,8 @@ class RadioButtonTasks extends StatefulWidget {
   GameSymbol symbol;
   double maxWidth;
 
-  RadioButtonTasks(this.tasksCallback, this.value, this.symbol, this.maxWidth, {Key? key})
+  RadioButtonTasks(this.tasksCallback, this.value, this.symbol, this.maxWidth,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -52,7 +54,7 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
       children: [
         // expanded da odvoji tekst od radio buttona i poravna sve u sredinu
         Text(
-          tasksUpToNumber.i18n,
+          translation(context).tasksUpToNumber,
           textAlign: TextAlign.end,
           style: TextStyle(
             fontSize: widget.maxWidth / settingsFontSize,

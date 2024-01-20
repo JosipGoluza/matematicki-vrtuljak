@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../../localizations/pause_localization.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
 
 class ResumeButton extends StatefulWidget {
-  const ResumeButton({super.key});
+  BuildContext appContext;
+
+  ResumeButton(this.appContext, {super.key});
 
   @override
   State<ResumeButton> createState() => _ResumeButtonState();
@@ -29,7 +30,7 @@ class _ResumeButtonState extends State<ResumeButton> {
         ),
         child: Center(
           child: Text(
-            continue_.i18n,
+            translation(widget.appContext).continueGame,
             style: const TextStyle(
               color: Colors.black, // Text color
               fontWeight: FontWeight.bold,

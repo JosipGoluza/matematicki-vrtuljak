@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:matematicki_vrtuljak/models/operators.dart';
 
 import '../constants/constants.dart';
+import '../util/language_constants.dart';
 
 class RadioButtonOperations extends StatefulWidget {
   Function(List<Operators> value) operatorsCallback;
@@ -63,7 +64,7 @@ class _RadioButtonOperationsState extends State<RadioButtonOperations> {
         Expanded(
             flex: 1,
             child: Text(
-              enableOperations.i18n,
+              translation(context).enableOperations,
               textAlign: TextAlign.end,
               style: TextStyle(
                 fontSize: widget.maxWidth / settingsFontSize,

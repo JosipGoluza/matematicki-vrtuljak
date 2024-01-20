@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
+import '../util/language_constants.dart';
 
 class RadioButtonSymbols extends StatefulWidget {
   Function(GameSymbol value) symbolCallback;
@@ -51,7 +52,7 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
         ),
         child: {
           GameSymbol.numbers: Text(
-            numbers.i18n,
+            translation(context).numbers,
             style: TextStyle(
               color:
                   (widget.value == symbolValue) ? Colors.white : Colors.black,
@@ -74,7 +75,7 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          numbersOrSymbols.i18n,
+          translation(context).numbersOrSymbols,
           textAlign: TextAlign.end,
           style: TextStyle(
             fontSize: widget.maxWidth / settingsFontSize,

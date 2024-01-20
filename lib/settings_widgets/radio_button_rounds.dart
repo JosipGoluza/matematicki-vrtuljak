@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants/constants.dart';
+import '../util/language_constants.dart';
 
 class RadioButtonRounds extends StatefulWidget {
   Function(int value) roundsCallback;
@@ -35,9 +36,8 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
           widget.roundsCallback(widget.value);
         },
         style: OutlinedButton.styleFrom(
-          backgroundColor: (widget.value == roundsValue)
-              ? Colors.blue
-              : Colors.transparent,
+          backgroundColor:
+              (widget.value == roundsValue) ? Colors.blue : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -64,7 +64,7 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
         Expanded(
           flex: 1,
           child: Text(
-            numberOfRoundsLocalization.i18n,
+            translation(context).numberOfRoundsLocalization,
             textAlign: TextAlign.end,
             style: TextStyle(
               fontSize: widget.maxWidth / settingsFontSize,

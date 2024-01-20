@@ -10,7 +10,6 @@ class SettingsModel {
   GameSymbol currentSymbol;
   int maxOperationNumber;
   List<Operators> currentOperators;
-  LanguageOptions languageOptions;
 
   SettingsModel({
     required this.numberOfRounds,
@@ -19,6 +18,5 @@ class SettingsModel {
     required this.currentSymbol,
     required this.maxOperationNumber,
     required this.currentOperators,
-    required this.languageOptions,
   });
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../util/language_constants.dart';
 
 showAlertDialog(BuildContext context) {
   // set up the button
   Widget okButton = TextButton(
-    child: Text(ok.i18n),
+    child: Text(translation(context).ok),
     onPressed: () {
       Navigator.of(context, rootNavigator: true).pop();
     },
@@ -12,8 +14,8 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text(addOperator.i18n),
-    content: Text(chooseAtLeastOneOperator.i18n),
+    title: Text(translation(context).addOperator),
+    content: Text(translation(context).chooseAtLeastOneOperator),
     actions: [
       okButton,
     ],

@@ -13,7 +13,7 @@ getLanguageOptionFromName(String name) {
   return LanguageOptions.values.firstWhere((element) => element.name == name);
 }
 
-getLanguageFromName(LanguageOptions language) {
+Locale getLanguageFromName(LanguageOptions language) {
   switch (language) {
     case LanguageOptions.english:
       return const Locale('en', "US");
@@ -32,21 +32,21 @@ getLanguageFromName(LanguageOptions language) {
   }
 }
 
-getEnumValueFromName(String? name) {
+Locale getEnumValueFromName(String? name){
   switch (name) {
     case 'en':
-      return LanguageOptions.english.name;
+      return const Locale('en', "US");
     case 'hr':
-      return LanguageOptions.croatian.name;
+      return const Locale('hr', "HR");
     case 'es':
-      return LanguageOptions.spanish.name;
+      return const Locale('es', "ES");
     case 'fr':
-      return LanguageOptions.french.name;
+      return const Locale('fr', "FR");
     case 'pt':
-      return LanguageOptions.portuguese.name;
+      return const Locale('pt', "PT");
     case 'hu':
-      return LanguageOptions.hungarian.name;
+      return const Locale('hu', "HU");
     default:
-      return LanguageOptions.english.name;
+      return const Locale('en', "US");
   }
 }

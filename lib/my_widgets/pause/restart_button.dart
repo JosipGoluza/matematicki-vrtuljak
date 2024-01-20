@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
-import '../../localizations/pause_localization.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
 
 class RestartButton extends StatefulWidget {
   Function() restartButtonCallback;
+  BuildContext appContext;
 
-  RestartButton(this.restartButtonCallback, {super.key});
+  RestartButton(this.restartButtonCallback, this.appContext, {super.key});
 
   @override
   State<RestartButton> createState() => _RestartButtonState();
@@ -32,7 +32,7 @@ class _RestartButtonState extends State<RestartButton> {
         // ),
         child: Center(
           child: Text(
-            playAgain.i18n,
+            translation(widget.appContext).playAgainPause,
             style: const TextStyle(
               color: Colors.black, // Text color
               fontWeight: FontWeight.bold,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:i18n_extension/i18n_widget.dart';
-import 'package:matematicki_vrtuljak/localizations/settings_widgets_localization.dart';
 import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_answers.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_language.dart';
@@ -15,11 +13,11 @@ import 'package:provider/provider.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
-import '../models/language.dart';
 import '../models/operators.dart';
 import '../models/settings_model.dart';
 import '../settings_widgets/radio_button_operations.dart';
 import '../util/audio_player_handler.dart';
+import '../util/language_constants.dart';
 
 class Settings extends StatefulWidget {
   UserPreferences userPreferences;
@@ -41,7 +39,6 @@ class _SettingsState extends State<Settings> {
     currentSymbol: GameSymbol.numbers,
     maxOperationNumber: 5,
     currentOperators: [Operators.add, Operators.subtract],
-    languageOptions: LanguageOptions.english,
   );
 
   roundsCallback(int value) {
@@ -81,12 +78,6 @@ class _SettingsState extends State<Settings> {
     });
   }
 
-  languageCallback(LanguageOptions value) {
-    setState(() {
-      sharedPrefs.languageOptions = value;
-    });
-  }
-
   Future saveSettings() async {
     // Delay is added to prevent wrong settings being saved
     await Future.delayed(const Duration(milliseconds: 500));
@@ -98,7 +89,6 @@ class _SettingsState extends State<Settings> {
       currentSymbol: sharedPrefs.currentSymbol,
       maxOperationNumber: sharedPrefs.maxOperationNumber,
       currentOperators: sharedPrefs.currentOperators,
-      languageOptions: sharedPrefs.languageOptions,
     );
     await widget.userPreferences.saveSettings(newSettings);
   }
@@ -126,7 +116,7 @@ class _SettingsState extends State<Settings> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          settingsTitle.i18n,
+                          translation(context).settingsTitle,
                           style: TextStyle(
                             fontSize:
                                 constraints.maxWidth / settingsFontSizeTitle,
@@ -153,13 +143,11 @@ class _SettingsState extends State<Settings> {
                         ),
                         const SizedBox(height: 10),
                         RadioButtonLanguage(
-                          languageCallback,
-                          sharedPrefs.languageOptions,
                           constraints.maxWidth,
                         ),
                         const SizedBox(height: 15),
                         Text(
-                          operationGameSettings.i18n,
+                          translation(context).operationGameSettings,
                           style: TextStyle(
                             fontSize:
                                 constraints.maxWidth / settingsFontSizeTitle,
@@ -191,31 +179,68 @@ class _SettingsState extends State<Settings> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ElevatedButton(
-                              onPressed: () async => {
-                                if (sharedPrefs.currentOperators.isEmpty)
-                                  {showAlertDialog(context)}
-                                else
-                                  {
-                                    I18n.of(context).locale =
-                                        getLanguageFromName(
-                                      sharedPrefs.languageOptions,
+                            SizedBox(
+                              width: constraints.maxWidth * settingsButtonSizeWidth,
+                              height: constraints.maxHeight * settingsButtonSizeHeight,
+                              child: ElevatedButton(
+                                onPressed: () => {
+                                  context.go('/'),
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.grey.shade400),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(
+                                        width: 3,
+                                        color: Colors.grey.shade600,
+                                      ),
                                     ),
-                                    goHome(context)
-                                  }
-                              },
-                              child: Text(saveSettingsLocalization.i18n),
+                                  ),
+                                ),
+                                child: Text(
+                                  translation(context).cancelSettingsLocalization,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
                             ),
                             const SizedBox(width: 10),
-                            ElevatedButton(
-                              onPressed: () => {
-                                context.go('/'),
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red,
-                              ),
-                              child: Text(
-                                cancelSettingsLocalization.i18n,
+                            SizedBox(
+                              width: constraints.maxWidth * settingsButtonSizeWidth,
+                              height: constraints.maxHeight * settingsButtonSizeHeight,
+                              child: ElevatedButton(
+                                onPressed: () async => {
+                                  if (sharedPrefs.currentOperators.isEmpty)
+                                    {showAlertDialog(context)}
+                                  else
+                                    {goHome(context)}
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.green.shade400),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(
+                                        width: 3,
+                                        color: Colors.green.shade600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                child: Text(
+                                  translation(context).saveSettingsLocalization,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
