@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/constants/constants.dart';
 import 'package:matematicki_vrtuljak/models/game_symbol.dart';
 
 class StaticEmptyContainer extends StatelessWidget {
@@ -32,12 +34,13 @@ class StaticEmptyContainer extends StatelessWidget {
         ),
       ),
       child: {
-        GameSymbol.numbers: Text(
+        GameSymbol.numbers: AutoSizeText(
           containerNumber.toString(),
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: min(height, width) * 0.8,
+          style: const TextStyle(
+            fontSize: fontMaxSize,
           ),
+          maxLines: 1,
         ),
         GameSymbol.images: Image.asset(
           'assets/images/apples/apple$containerNumber.png',
