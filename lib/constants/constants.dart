@@ -28,10 +28,11 @@ const differentSetsItemPicturesHeightScale = 0.6;
 const differentSetsItemPicturesWidthScale = 0.25;
 
 const settingsFontSize = 55;
-const settingsFontSizeTitle = 30;
+const settingsFontSizeTitle = 25;
 const settingsButtonSizeWidth = 0.15;
 const settingsButtonSizeHeight = 0.07;
 const settingsRadioButtonHeightScale = 0.15;
 const settingsFontSizeSmallScale = 0.7;
+const settingsButtonBorderWidthScale = 0.06;
 
 const double fontMaxSize = 9999;

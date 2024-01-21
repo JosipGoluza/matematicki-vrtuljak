@@ -8,7 +8,6 @@ import 'package:matematicki_vrtuljak/settings_widgets/radio_button_music.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_rounds.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_symbols.dart';
 import 'package:matematicki_vrtuljak/settings_widgets/radio_button_tasks.dart';
-import 'package:matematicki_vrtuljak/settings_widgets/settings_alert_dialog.dart';
 import 'package:matematicki_vrtuljak/util/user_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -217,7 +216,7 @@ class _SettingsState extends State<Settings> {
                                       RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                         side: BorderSide(
-                                          width: 3,
+                                          width: (constraints.maxHeight * settingsRadioButtonHeightScale) * settingsButtonBorderWidthScale,
                                           color: Colors.grey.shade600,
                                         ),
                                       ),
@@ -250,14 +249,14 @@ class _SettingsState extends State<Settings> {
                                       const EdgeInsets.all(10),
                                     ),
                                     backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.green.shade400),
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.green.shade400),
                                     shape: MaterialStateProperty.all<
                                         RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                         side: BorderSide(
-                                          width: 3,
+                                          width: (constraints.maxHeight * settingsRadioButtonHeightScale) * settingsButtonBorderWidthScale,
                                           color: Colors.green.shade600,
                                         ),
                                       ),
@@ -277,6 +276,7 @@ class _SettingsState extends State<Settings> {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 20),
                         ],
                       ),
                     ),
