@@ -41,4 +41,9 @@ class UserPreferences {
       currentOperators: currentOperators,
     );
   }
+
+  Future setMusicEnabled(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('musicEnabled', value);
+  }
 }

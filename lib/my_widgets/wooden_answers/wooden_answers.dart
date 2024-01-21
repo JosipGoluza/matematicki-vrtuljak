@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/models/game_symbol.dart';
+import 'package:provider/provider.dart';
 
+import '../../util/audio_player_handler.dart';
 import '../../util/generate_random_number_around.dart';
 
 class WoodenAnswers extends StatefulWidget {
@@ -59,7 +61,7 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: widget.height,
       width: widget.width,
       child: Row(
@@ -77,8 +79,20 @@ class _WoodenAnswersState extends State<WoodenAnswers> {
                     onTap: () async {
                       if (guessedList[index] == true) return;
                       if (numberList[index] == widget.correctAnswer) {
+                        var audioPlayerProvider =
+                            Provider.of<AudioPlayerProvider>(
+                          context,
+                          listen: false,
+                        );
+                        audioPlayerProvider.playCorrectSoundEffect();
                         await widget.answerBoxCallback(Colors.green);
                       } else {
+                        var audioPlayerProvider =
+                            Provider.of<AudioPlayerProvider>(
+                          context,
+                          listen: false,
+                        );
+                        audioPlayerProvider.playWrongSoundEffect();
                         guessedList[index] = true;
                         await widget.answerBoxCallback(Colors.red);
                       }

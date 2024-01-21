@@ -315,11 +315,13 @@ class _SettingsState extends State<Settings> {
       context,
       listen: false,
     ).audioPlayer;
-    if (shouldPlay) {
+    if (!audioPlayer.playing && shouldPlay) {
       audioPlayer.play();
-    } else {
+    } else if(!shouldPlay) {
       audioPlayer.pause();
     }
+
+    widget.userPreferences.setMusicEnabled(shouldPlay);
   }
 
   Future<void> goHome(BuildContext context) async {

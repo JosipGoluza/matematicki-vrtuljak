@@ -54,9 +54,9 @@ class _HomePageState extends State<HomePage> {
       listen: false,
     );
     AudioPlayer audioPlayer = audioPlayerProvider.audioPlayer;
-    if (musicEnabled) {
+    if (!audioPlayer.playing && musicEnabled) {
       audioPlayer.play();
-    } else {
+    } else if (!musicEnabled) {
       audioPlayer.pause();
     }
 
