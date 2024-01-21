@@ -28,6 +28,8 @@
   "pauseButton": "PAUSE",
   "continueGame": "CONTINUER",
   "playAgainPause": "RECOMMENCER",
-  "mainMenu": "MENU PRINCIPAL"
-
+  "mainMenu": "MENU PRINCIPAL",
+  "numberPickerTitle": "Des tâches jusqu'au nombre",
+  "numberPickerOk": "Sauvegarder",
+  "numberPickerCancel": "Annuler"
 }

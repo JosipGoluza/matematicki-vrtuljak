@@ -1,5 +1,7 @@
+import 'dart:math';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants/constants.dart';
 import '../models/game_symbol.dart';
@@ -11,11 +13,11 @@ class RadioButtonSymbols extends StatefulWidget {
   Function(int value) tasksCallback;
   int maxOperationNumber;
   double maxWidth;
+  double maxHeight;
 
   RadioButtonSymbols(this.symbolCallback, this.value, this.tasksCallback,
-      this.maxOperationNumber, this.maxWidth,
-      {Key? key})
-      : super(key: key);
+      this.maxOperationNumber, this.maxWidth, this.maxHeight,
+      {super.key});
 
   @override
   State<RadioButtonSymbols> createState() => _RadioButtonSymbolsState();
@@ -23,10 +25,11 @@ class RadioButtonSymbols extends StatefulWidget {
 
 class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
   Widget customRadioButton(GameSymbol symbolValue) {
-    // Used SizedBox with fixed width to center the widget
+    var buttonWidth = widget.maxWidth / 7;
+    var buttonHeight = widget.maxHeight * settingsRadioButtonHeightScale;
     return SizedBox(
-      width: widget.maxWidth / 7,
-      height: 40,
+      width: buttonWidth,
+      height: buttonHeight,
       child: OutlinedButton(
         onPressed: () {
           setState(
@@ -49,20 +52,24 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
           side: const BorderSide(
             color: Colors.black,
           ),
+          padding: const EdgeInsets.all(5),
         ),
         child: {
-          GameSymbol.numbers: Text(
+          GameSymbol.numbers: AutoSizeText(
             translation(context).numbers,
             style: TextStyle(
               color:
                   (widget.value == symbolValue) ? Colors.white : Colors.black,
+              fontSize: 9999,
             ),
+            maxLines: 1,
           ),
           GameSymbol.images: Image.asset(
             'assets/images/option_apple.png',
           ),
           GameSymbol.blocks: Image.asset(
             'assets/images/option_square.png',
+            fit: BoxFit.fill,
           ),
         }[symbolValue],
       ),
@@ -74,12 +81,15 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          translation(context).numbersOrSymbols,
-          textAlign: TextAlign.end,
-          style: TextStyle(
-            fontSize: widget.maxWidth / settingsFontSize,
-            fontWeight: FontWeight.bold,
+        Expanded(
+          flex: 1,
+          child: Text(
+            translation(context).numbersOrSymbols,
+            textAlign: TextAlign.end,
+            style: TextStyle(
+              fontSize: widget.maxWidth / settingsFontSize,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         const SizedBox(

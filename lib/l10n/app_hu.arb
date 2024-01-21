@@ -28,6 +28,8 @@
   "pauseButton": "SZÜNET",
   "continueGame": "FOLYTATÁS",
   "playAgainPause": "ÚJRA",
-  "mainMenu": "FŐMENÜ"
-
+  "mainMenu": "FŐMENÜ",
+  "numberPickerTitle": "Feladatok az adott számig",
+  "numberPickerOk": "Mentés",
+  "numberPickerCancel": "Mégsem"
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -8,8 +10,9 @@ class RadioButtonMusic extends StatefulWidget {
   Function(bool value) musicCallback;
   bool value;
   double maxWidth;
+  double maxHeight;
 
-  RadioButtonMusic(this.musicCallback, this.value, this.maxWidth, {Key? key})
+  RadioButtonMusic(this.musicCallback, this.value, this.maxWidth, this.maxHeight, {Key? key})
       : super(key: key);
 
   @override
@@ -21,9 +24,11 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
     var text = musicValue
         ? translation(context).yes
         : translation(context).no;
-    // Used SizedBox with fixed width to center the widget
+    var buttonWidth = widget.maxWidth / 7;
+    var buttonHeight = widget.maxHeight * settingsRadioButtonHeightScale;
     return SizedBox(
-      width: (widget.maxWidth) / 7,
+      width: buttonWidth,
+      height: buttonHeight,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -40,11 +45,13 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
           side: const BorderSide(
             color: Colors.black,
           ),
+          padding: EdgeInsets.zero,
         ),
         child: Text(
           text,
           style: TextStyle(
             color: (widget.value == musicValue) ? Colors.white : Colors.black,
+            fontSize: min(buttonWidth * 0.4, buttonHeight * 0.7),
           ),
         ),
       ),

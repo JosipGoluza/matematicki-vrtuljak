@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -8,8 +10,9 @@ class RadioButtonRounds extends StatefulWidget {
   Function(int value) roundsCallback;
   int value;
   double maxWidth;
+  double maxHeight;
 
-  RadioButtonRounds(this.roundsCallback, this.value, this.maxWidth, {Key? key})
+  RadioButtonRounds(this.roundsCallback, this.value, this.maxWidth, this.maxHeight, {Key? key})
       : super(key: key);
 
   @override
@@ -25,9 +28,11 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
     } else {
       text = roundsValue.toString();
     }
-
+    var buttonWidth = widget.maxWidth / 7;
+    var buttonHeight = widget.maxHeight * settingsRadioButtonHeightScale;
     return SizedBox(
-      width: widget.maxWidth / 7,
+      width: buttonWidth,
+      height: buttonHeight,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -44,11 +49,13 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
           side: const BorderSide(
             color: Colors.black,
           ),
+          padding: EdgeInsets.zero,
         ),
         child: Text(
           text,
           style: TextStyle(
             color: (widget.value == roundsValue) ? Colors.white : Colors.black,
+            fontSize: min(buttonWidth * 0.4, buttonHeight * 0.7),
           ),
         ),
       ),

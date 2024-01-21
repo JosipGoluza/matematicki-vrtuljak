@@ -28,6 +28,8 @@
   "pauseButton": "PAUZA",
   "continueGame": "NASTAVI",
   "playAgainPause": "IGRAJ PONOVO",
-  "mainMenu": "POČETNI IZBORNIK"
-
+  "mainMenu": "POČETNI IZBORNIK",
+  "numberPickerTitle": "Zadaci do broja",
+  "numberPickerOk": "Spremi",
+  "numberPickerCancel": "Odustani"
 }

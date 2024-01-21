@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:matematicki_vrtuljak/constants/constants.dart';
@@ -8,8 +10,9 @@ class RadioButtonAnswers extends StatefulWidget {
   Function(int value) answersCallback;
   int value;
   double maxWidth;
+  double maxHeight;
 
-  RadioButtonAnswers(this.answersCallback, this.value, this.maxWidth,
+  RadioButtonAnswers(this.answersCallback, this.value, this.maxWidth, this.maxHeight,
       {Key? key})
       : super(key: key);
 
@@ -19,9 +22,11 @@ class RadioButtonAnswers extends StatefulWidget {
 
 class _RadioButtonAnswersState extends State<RadioButtonAnswers> {
   Widget customRadioButton(int answersValue) {
-    // Used SizedBox with fixed width to center the widget
+    var buttonWidth = widget.maxWidth / 7;
+    var buttonHeight = widget.maxHeight * settingsRadioButtonHeightScale;
     return SizedBox(
-      width: widget.maxWidth / 7,
+      width: buttonWidth,
+      height: buttonHeight,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -38,11 +43,13 @@ class _RadioButtonAnswersState extends State<RadioButtonAnswers> {
           side: const BorderSide(
             color: Colors.black,
           ),
+          padding: EdgeInsets.zero,
         ),
         child: Text(
           answersValue.toString(),
           style: TextStyle(
             color: (widget.value == answersValue) ? Colors.white : Colors.black,
+            fontSize: min(buttonWidth * 0.4, buttonHeight * 0.7),
           ),
         ),
       ),

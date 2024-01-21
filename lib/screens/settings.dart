@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
@@ -101,6 +102,8 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController firstController = ScrollController();
+
     return Scaffold(
       backgroundColor: Colors.grey[350],
       // stack is used to set pause button on top right corner
@@ -109,143 +112,173 @@ class _SettingsState extends State<Settings> {
           return Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                ),
                 child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          translation(context).settingsTitle,
-                          style: TextStyle(
-                            fontSize:
-                                constraints.maxWidth / settingsFontSizeTitle,
-                            fontWeight: FontWeight.bold,
+                  child: Scrollbar(
+                    trackVisibility: true,
+                    thumbVisibility: true,
+                    controller: firstController,
+                    child: SingleChildScrollView(
+                      controller: firstController,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            translation(context).settingsTitle,
+                            style: TextStyle(
+                              fontSize:
+                                  constraints.maxWidth / settingsFontSizeTitle,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        RadioButtonRounds(
-                          roundsCallback,
-                          sharedPrefs.numberOfRounds,
-                          constraints.maxWidth,
-                        ),
-                        const SizedBox(height: 10),
-                        RadioButtonAnswers(
-                          answersCallback,
-                          sharedPrefs.numberOfAnswers,
-                          constraints.maxWidth,
-                        ),
-                        const SizedBox(height: 10),
-                        RadioButtonMusic(
-                          musicCallback,
-                          sharedPrefs.musicEnabled,
-                          constraints.maxWidth,
-                        ),
-                        const SizedBox(height: 10),
-                        RadioButtonLanguage(
-                          constraints.maxWidth,
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          translation(context).operationGameSettings,
-                          style: TextStyle(
-                            fontSize:
-                                constraints.maxWidth / settingsFontSizeTitle,
-                            fontWeight: FontWeight.bold,
+                          const SizedBox(height: 10),
+                          RadioButtonRounds(
+                            roundsCallback,
+                            sharedPrefs.numberOfRounds,
+                            constraints.maxWidth,
+                            constraints.maxHeight,
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        RadioButtonSymbols(
-                          symbolsCallback,
-                          sharedPrefs.currentSymbol,
-                          tasksCallback,
-                          sharedPrefs.maxOperationNumber,
-                          constraints.maxWidth,
-                        ),
-                        const SizedBox(height: 10),
-                        RadioButtonTasks(
-                          tasksCallback,
-                          sharedPrefs.maxOperationNumber,
-                          sharedPrefs.currentSymbol,
-                          constraints.maxWidth,
-                        ),
-                        const SizedBox(height: 10),
-                        RadioButtonOperations(
-                          operatorsCallback,
-                          sharedPrefs.currentOperators,
-                          constraints.maxWidth,
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: constraints.maxWidth * settingsButtonSizeWidth,
-                              height: constraints.maxHeight * settingsButtonSizeHeight,
-                              child: ElevatedButton(
-                                onPressed: () => {
-                                  context.go('/'),
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.grey.shade400),
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      side: BorderSide(
-                                        width: 3,
-                                        color: Colors.grey.shade600,
+                          const SizedBox(height: 10),
+                          RadioButtonAnswers(
+                            answersCallback,
+                            sharedPrefs.numberOfAnswers,
+                            constraints.maxWidth,
+                            constraints.maxHeight,
+                          ),
+                          const SizedBox(height: 10),
+                          RadioButtonMusic(
+                            musicCallback,
+                            sharedPrefs.musicEnabled,
+                            constraints.maxWidth,
+                            constraints.maxHeight,
+                          ),
+                          const SizedBox(height: 10),
+                          RadioButtonLanguage(
+                            constraints.maxWidth,
+                            constraints.maxHeight,
+                          ),
+                          const SizedBox(height: 15),
+                          Text(
+                            translation(context).operationGameSettings,
+                            style: TextStyle(
+                              fontSize:
+                                  constraints.maxWidth / settingsFontSizeTitle,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          RadioButtonSymbols(
+                            symbolsCallback,
+                            sharedPrefs.currentSymbol,
+                            tasksCallback,
+                            sharedPrefs.maxOperationNumber,
+                            constraints.maxWidth,
+                            constraints.maxHeight,
+                          ),
+                          const SizedBox(height: 10),
+                          RadioButtonTasks(
+                            tasksCallback,
+                            sharedPrefs.maxOperationNumber,
+                            sharedPrefs.currentSymbol,
+                            constraints.maxWidth,
+                            constraints.maxHeight,
+                          ),
+                          const SizedBox(height: 10),
+                          RadioButtonOperations(
+                            operatorsCallback,
+                            sharedPrefs.currentOperators,
+                            constraints.maxWidth,
+                            constraints.maxHeight,
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: constraints.maxWidth *
+                                    settingsButtonSizeWidth,
+                                height: constraints.maxHeight *
+                                    settingsRadioButtonHeightScale,
+                                child: ElevatedButton(
+                                  onPressed: () => {
+                                    context.go('/'),
+                                  },
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all(
+                                      const EdgeInsets.all(10),
+                                    ),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.grey.shade400),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        side: BorderSide(
+                                          width: 3,
+                                          color: Colors.grey.shade600,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                child: Text(
-                                  translation(context).cancelSettingsLocalization,
-                                  style: const TextStyle(
-                                    color: Colors.black,
+                                  child: AutoSizeText(
+                                    translation(context)
+                                        .cancelSettingsLocalization,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: fontMaxSize,
+                                    ),
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 10),
-                            SizedBox(
-                              width: constraints.maxWidth * settingsButtonSizeWidth,
-                              height: constraints.maxHeight * settingsButtonSizeHeight,
-                              child: ElevatedButton(
-                                onPressed: () async => {
-                                  if (sharedPrefs.currentOperators.isEmpty)
-                                    {showAlertDialog(context)}
-                                  else
-                                    {goHome(context)}
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.green.shade400),
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      side: BorderSide(
-                                        width: 3,
-                                        color: Colors.green.shade600,
+                              const SizedBox(width: 10),
+                              SizedBox(
+                                width: constraints.maxWidth *
+                                    settingsButtonSizeWidth,
+                                height: constraints.maxHeight *
+                                    settingsRadioButtonHeightScale,
+                                child: ElevatedButton(
+                                  onPressed: () => {
+                                    context.go('/'),
+                                  },
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all(
+                                      const EdgeInsets.all(10),
+                                    ),
+                                    backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.green.shade400),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        side: BorderSide(
+                                          width: 3,
+                                          color: Colors.green.shade600,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                child: Text(
-                                  translation(context).saveSettingsLocalization,
-                                  style: const TextStyle(
-                                    color: Colors.black,
+                                  child: AutoSizeText(
+                                    translation(context)
+                                        .saveSettingsLocalization,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: fontMaxSize,
+                                    ),
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

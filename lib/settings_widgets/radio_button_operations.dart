@@ -1,5 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:matematicki_vrtuljak/models/operators.dart';
 
 import '../constants/constants.dart';
@@ -9,8 +9,10 @@ class RadioButtonOperations extends StatefulWidget {
   Function(List<Operators> value) operatorsCallback;
   List<Operators> value;
   double maxWidth;
+  double maxHeight;
 
-  RadioButtonOperations(this.operatorsCallback, this.value, this.maxWidth,
+  RadioButtonOperations(
+      this.operatorsCallback, this.value, this.maxWidth, this.maxHeight,
       {Key? key})
       : super(key: key);
 
@@ -20,8 +22,11 @@ class RadioButtonOperations extends StatefulWidget {
 
 class _RadioButtonOperationsState extends State<RadioButtonOperations> {
   Widget customRadioButton(Operators operatorValue) {
+    var buttonWidth = widget.maxWidth / 7;
+    var buttonHeight = widget.maxHeight * settingsRadioButtonHeightScale;
     return SizedBox(
-      width: widget.maxWidth / 7,
+      width: buttonWidth,
+      height: buttonHeight,
       child: OutlinedButton(
         onPressed: () {
           setState(() {
@@ -43,14 +48,18 @@ class _RadioButtonOperationsState extends State<RadioButtonOperations> {
           side: const BorderSide(
             color: Colors.black,
           ),
+          padding: const EdgeInsets.all(5),
         ),
-        child: Text(
+        child: AutoSizeText(
           operatorValue.value,
           style: TextStyle(
             color: (widget.value.contains(operatorValue))
                 ? Colors.white
                 : Colors.black,
+            fontSize: fontMaxSize,
           ),
+          maxLines: 1,
+          textAlign: TextAlign.center,
         ),
       ),
     );

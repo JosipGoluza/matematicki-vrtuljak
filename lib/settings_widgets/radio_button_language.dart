@@ -4,12 +4,12 @@ import 'package:matematicki_vrtuljak/models/language.dart';
 import '../constants/constants.dart';
 import '../main.dart';
 import '../util/language_constants.dart';
-import '../util/user_preferences.dart';
 
 class RadioButtonLanguage extends StatefulWidget {
   double maxWidth;
+  double maxHeight;
 
-  RadioButtonLanguage(this.maxWidth, {Key? key})
+  RadioButtonLanguage(this.maxWidth, this.maxHeight, {Key? key})
       : super(key: key);
 
   @override
@@ -19,25 +19,29 @@ class RadioButtonLanguage extends StatefulWidget {
 class RadioButtonLanguageState extends State<RadioButtonLanguage> {
   Widget customRadioButton(
       LanguageOptions languageValue, String currentLocale) {
+    var buttonWidth = widget.maxWidth / 9;
+    var buttonHeight = widget.maxHeight * settingsRadioButtonHeightScale;
     return SizedBox(
-      width: widget.maxWidth / 9,
-      height: widget.maxWidth / 14,
+      width: buttonWidth,
+      height: buttonHeight,
       child: OutlinedButton(
         onPressed: () async {
-          Locale _locale = await setLocale(getLanguageFromName(languageValue).languageCode);
+          Locale _locale =
+              await setLocale(getLanguageFromName(languageValue).languageCode);
           MyApp.setLocale(context, (_locale));
         },
         style: OutlinedButton.styleFrom(
-          backgroundColor:
-              (currentLocale == getLanguageFromName(languageValue).languageCode.toString())
-                  ? Colors.blue
-                  : Colors.transparent,
+          backgroundColor: (currentLocale ==
+                  getLanguageFromName(languageValue).languageCode.toString())
+              ? Colors.blue
+              : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           side: const BorderSide(
             color: Colors.black,
           ),
+          padding: const EdgeInsets.all(5),
         ),
         child: {
           LanguageOptions.english: Image.asset(

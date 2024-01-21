@@ -28,6 +28,8 @@
   "pauseButton": "PAUSA",
   "continueGame": "CONTINUAR",
   "playAgainPause": "JUGAR DE NUEVO",
-  "mainMenu": "MENÚ PRINCIPAL"
-
+  "mainMenu": "MENÚ PRINCIPAL",
+  "numberPickerTitle": "Tareas hasta el número",
+  "numberPickerOk": "Salvar",
+  "numberPickerCancel": "Cancelar"
 }
