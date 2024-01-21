@@ -16,6 +16,7 @@ import '../models/game_symbol.dart';
 import '../models/operators.dart';
 import '../models/settings_model.dart';
 import '../settings_widgets/radio_button_operations.dart';
+import '../settings_widgets/settings_alert_dialog.dart';
 import '../util/audio_player_handler.dart';
 import '../util/language_constants.dart';
 
@@ -241,8 +242,11 @@ class _SettingsState extends State<Settings> {
                                 height: constraints.maxHeight *
                                     settingsRadioButtonHeightScale,
                                 child: ElevatedButton(
-                                  onPressed: () => {
-                                    context.go('/'),
+                                  onPressed: () async => {
+                                    if (sharedPrefs.currentOperators.isEmpty)
+                                      {showAlertDialog(context)}
+                                    else
+                                      {goHome(context)}
                                   },
                                   style: ButtonStyle(
                                     padding: MaterialStateProperty.all(

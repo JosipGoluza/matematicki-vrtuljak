@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/models/game_finish_model.dart';
@@ -42,38 +43,77 @@ class _GameFinishState extends State<GameFinish> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      AutoSizeText(
                         translation(context).gameOver,
-                        style: const TextStyle(
-                          fontSize: 30,
+                        style: TextStyle(
+                          fontSize:
+                              constraints.maxWidth * gameFinishTitleFontScale,
                           fontWeight: FontWeight.bold,
                         ),
+                        maxLines: 1,
                       ),
                       const SizedBox(height: 20),
-                      correctGuesses(correctGuessesText, context),
+                      correctGuesses(
+                        correctGuessesText,
+                        context,
+                        constraints.maxWidth,
+                      ),
                       const SizedBox(height: 20),
-                      wrongGuesses(wrongGuessesText, context),
+                      wrongGuesses(
+                        wrongGuessesText,
+                        context,
+                        constraints.maxWidth,
+                      ),
                       const SizedBox(height: 20),
-                      timeTaken(minutesText, secondsText, context),
+                      timeTaken(
+                        minutesText,
+                        secondsText,
+                        context,
+                        constraints.maxWidth,
+                      ),
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ElevatedButton(
-                            onPressed: () => {
-                              context.go('/'),
-                            },
-                            child: Text(translation(context).gameFinishReturn),
+                          SizedBox(
+                            width: constraints.maxWidth * 0.25,
+                            height: constraints.maxHeight * 0.13,
+                            child: ElevatedButton(
+                              onPressed: () => {
+                                context.go('/'),
+                              },
+                              child: AutoSizeText(
+                                translation(context).gameFinishReturn,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: (constraints.maxWidth * 0.25) * 0.1,
+                                  color: Colors.grey.shade800,
+                                ),
+                              ),
+                            ),
                           ),
                           const SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () => {
-                              restartNewGame(
-                                context,
-                                path,
+                          SizedBox(
+                            width: constraints.maxWidth * 0.25,
+                            height: constraints.maxHeight * 0.13,
+                            child: ElevatedButton(
+                              onPressed: () => {
+                                restartNewGame(
+                                  context,
+                                  path,
+                                ),
+                              },
+                              child: AutoSizeText(
+                                translation(context).playAgain,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: (constraints.maxWidth * 0.25) * 0.1,
+                                  color: Colors.grey.shade800,
+                                ),
                               ),
-                            },
-                            child: Text(translation(context).playAgain),
+                            ),
                           ),
                         ],
                       ),
@@ -101,6 +141,8 @@ class _GameFinishState extends State<GameFinish> {
       required String path,
       required double width,
       required double height}) {
+    double cardWidth = 700;
+    double cardHeight = 450;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(smallScreenPadding),
@@ -114,8 +156,8 @@ class _GameFinishState extends State<GameFinish> {
           children: [
             Center(
               child: Container(
-                width: 700,
-                height: 450,
+                width: cardWidth,
+                height: cardHeight,
                 decoration: BoxDecoration(
                     color: Colors.grey[350],
                     border: Border.all(color: Colors.grey[850]!),
@@ -125,36 +167,60 @@ class _GameFinishState extends State<GameFinish> {
                   children: [
                     Text(
                       translation(context).gameOver,
-                      style: const TextStyle(
-                        fontSize: 30,
+                      style: TextStyle(
+                        fontSize: cardWidth * gameFinishTitleFontScale,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    correctGuesses(correctGuessesText, context),
+                    correctGuesses(correctGuessesText, context, cardWidth),
                     const SizedBox(height: 20),
-                    wrongGuesses(wrongGuessesText, context),
+                    wrongGuesses(wrongGuessesText, context, cardWidth),
                     const SizedBox(height: 20),
-                    timeTaken(minutesText, secondsText, context),
+                    timeTaken(minutesText, secondsText, context, cardWidth),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton(
-                          onPressed: () => {
-                            context.go('/'),
-                          },
-                          child: Text(translation(context).gameFinishReturn),
+                        SizedBox(
+                          width: cardWidth * 0.25,
+                          height: cardHeight * 0.13,
+                          child: ElevatedButton(
+                            onPressed: () => {
+                              context.go('/'),
+                            },
+                            child: AutoSizeText(
+                              translation(context).gameFinishReturn,
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: (cardWidth * 0.25) * 0.1,
+                                color: Colors.grey.shade800,
+                              ),
+                            ),
+                          ),
                         ),
                         const SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: () => {
-                            restartNewGame(
-                              context,
-                              path,
+                        SizedBox(
+                          width: cardWidth * 0.25,
+                          height: cardHeight * 0.13,
+                          child: ElevatedButton(
+                            onPressed: () => {
+                              restartNewGame(
+                                context,
+                                path,
+                              ),
+                            },
+                            child: AutoSizeText(
+                              translation(context).playAgain,
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: (cardWidth * 0.25) * 0.1,
+                                color: Colors.grey.shade800,
+                              ),
                             ),
-                          },
-                          child: Text(translation(context).playAgain),
+                          ),
                         ),
                       ],
                     ),
