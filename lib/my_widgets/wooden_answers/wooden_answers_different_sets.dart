@@ -5,14 +5,16 @@ import 'package:matematicki_vrtuljak/util/getResultDifferentSets.dart';
 class WoodenAnswersDifferentSets extends StatefulWidget {
   double height;
   double width;
-  StartDifferentSetsGameModel startGameModel;
+  int correctAnswer;
+  int otherAnswer;
   Function(Color value) answerBoxCallback;
 
   WoodenAnswersDifferentSets({
     Key? key,
     required this.height,
     required this.width,
-    required this.startGameModel,
+    required this.correctAnswer,
+    required this.otherAnswer,
     required this.answerBoxCallback,
   }) : super(key: key);
 
@@ -36,8 +38,8 @@ class _WoodenAnswersDifferentSetsState
           onTap: () async {
             getResultDifferentSets(
               path,
-              widget.startGameModel.correctAnswer,
-              widget.startGameModel.otherAnswer,
+              widget.correctAnswer,
+              widget.otherAnswer,
               widget.answerBoxCallback,
               guessedList,
             );

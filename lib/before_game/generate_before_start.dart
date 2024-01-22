@@ -1,14 +1,23 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:math';
 
 import '../models/game_finish_model.dart';
 import '../models/start_different_sets_game_model.dart';
 import '../models/start_numbers_game_model.dart';
+import 'generate_random_positions.dart';
 
-void generateBeforeStart(BuildContext context, String path, int numberOfRounds,
-    int currentRound, Stopwatch stopwatch, int correctGuesses, int wrongGuesses,
-    int numberOfAnswers,) {
+void generateBeforeStart(
+  BuildContext context,
+  String path,
+  int numberOfRounds,
+  int currentRound,
+  Stopwatch stopwatch,
+  int correctGuesses,
+  int wrongGuesses,
+  int numberOfAnswers,
+) {
   Random random = Random();
 
   if (currentRound >= numberOfRounds) {
@@ -47,6 +56,9 @@ void generateBeforeStart(BuildContext context, String path, int numberOfRounds,
         var otherAnswer = getOtherValue(random, correctAnswer);
         bool isSame = otherAnswer == correctAnswer;
 
+        var correctIconPositions = generateRandomPositions(10);
+        var otherIconsPositions = generateRandomPositions(10);
+
         StartDifferentSetsGameModel startGameModel =
             StartDifferentSetsGameModel(
           numberOfRounds: numberOfRounds,
@@ -58,6 +70,8 @@ void generateBeforeStart(BuildContext context, String path, int numberOfRounds,
           stopwatch: stopwatch,
           correctGuesses: correctGuesses,
           wrongGuesses: wrongGuesses,
+          correctIconPositions: correctIconPositions,
+          otherIconsPositions: otherIconsPositions,
         );
         context.go(path, extra: startGameModel);
       }

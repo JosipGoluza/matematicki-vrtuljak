@@ -73,12 +73,8 @@ class _DifferentSetsState extends State<DifferentSets> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth >= isDesktopWidth &&
-              constraints.maxHeight >= isDesktopHeight;
           return Container(
-            padding: EdgeInsets.all(
-              isDesktop ? bigScreenPadding : smallScreenPadding,
-            ),
+            padding: EdgeInsets.zero,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/game_bg.png'),
@@ -90,7 +86,7 @@ class _DifferentSetsState extends State<DifferentSets> {
                 IgnorePointer(
                   ignoring: answerBoxColor != Colors.transparent,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.zero,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -104,7 +100,8 @@ class _DifferentSetsState extends State<DifferentSets> {
                                   differentSetsItemPicturesWidthScale,
                               imageName: widget.startGameModel.imageName,
                               answer: widget.startGameModel.correctAnswer,
-                              imageSize: constraints.maxHeight * 0.1,
+                              iconPositions:
+                                  widget.startGameModel.correctIconPositions,
                             ),
                             DynamicEmptyContainer(
                               height: constraints.maxHeight * 0.3,
@@ -118,14 +115,16 @@ class _DifferentSetsState extends State<DifferentSets> {
                                   differentSetsItemPicturesWidthScale,
                               imageName: widget.startGameModel.imageName,
                               answer: widget.startGameModel.otherAnswer,
-                              imageSize: constraints.maxHeight * 0.1,
+                              iconPositions:
+                                  widget.startGameModel.otherIconsPositions,
                             ),
                           ],
                         ),
                         WoodenAnswersDifferentSets(
                           height: constraints.maxHeight * 0.2,
                           width: constraints.maxWidth * 0.5,
-                          startGameModel: widget.startGameModel,
+                          correctAnswer: widget.startGameModel.correctAnswer,
+                          otherAnswer: widget.startGameModel.otherAnswer,
                           // correctAnswer: widget.startGameModel.correctAnswer,
                           answerBoxCallback: answerBoxCallback,
                         ),

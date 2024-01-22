@@ -1,3 +1,5 @@
+import 'icon_position.dart';
+
 class StartDifferentSetsGameModel {
   int numberOfRounds;
   int correctAnswer;
@@ -8,6 +10,8 @@ class StartDifferentSetsGameModel {
   Stopwatch stopwatch;
   int correctGuesses;
   int wrongGuesses;
+  List<IconPosition> correctIconPositions = [];
+  List<IconPosition> otherIconsPositions = [];
 
   StartDifferentSetsGameModel({
     required this.numberOfRounds,
@@ -19,5 +23,7 @@ class StartDifferentSetsGameModel {
     required this.stopwatch,
     required this.correctGuesses,
     required this.wrongGuesses,
+    required this.correctIconPositions,
+    required this.otherIconsPositions,
   });
 }

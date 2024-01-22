@@ -9,7 +9,7 @@ const signSeparator = 7.0;
 const gamesAndSettingsSeparator = 20.0;
 
 const bigScreenPadding = 16.0;
-const smallScreenPadding = 10.0;
+const smallScreenPadding = 5.0;
 const settingsRowMargin = 16.0;
 
 // this constant is used to position the carousel right on the top of grass
@@ -25,7 +25,7 @@ const operationsContainerHeightScale = 0.20;
 const operationsContainerWidthScale = 0.20;
 
 const differentSetsItemPicturesHeightScale = 0.6;
-const differentSetsItemPicturesWidthScale = 0.25;
+const differentSetsItemPicturesWidthScale = 0.38;
 
 const settingsFontSize = 55;
 const settingsFontSizeTitle = 25;
@@ -40,3 +40,5 @@ const double fontMaxSize = 9999;
 const double gameFinishTitleFontScale = 0.06;
 const double gameFinishTextFontScale = 0.03;
 const double gameFinishDesktopScale = 0.5;
+
+const double randomItemSizeScale = 0.2;
