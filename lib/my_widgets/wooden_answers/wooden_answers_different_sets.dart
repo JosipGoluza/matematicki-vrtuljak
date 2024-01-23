@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/models/start_different_sets_game_model.dart';
 import 'package:matematicki_vrtuljak/util/getResultDifferentSets.dart';
 
 class WoodenAnswersDifferentSets extends StatefulWidget {
@@ -27,7 +26,7 @@ class _WoodenAnswersDifferentSetsState
     extends State<WoodenAnswersDifferentSets> {
   List<bool> guessedList = List.filled(2, false);
 
-  Widget customWoodenAnswer(String path) {
+  Widget customWoodenAnswer(String path, BuildContext appContext) {
     var index = path == "equal" ? 0 : 1;
     return Opacity(
       opacity: guessedList[index] ? 0.5 : 1,
@@ -42,6 +41,7 @@ class _WoodenAnswersDifferentSetsState
               widget.otherAnswer,
               widget.answerBoxCallback,
               guessedList,
+              appContext,
             );
           },
           child: Stack(alignment: Alignment.center, children: [
@@ -68,11 +68,11 @@ class _WoodenAnswersDifferentSetsState
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        customWoodenAnswer("equal"),
+        customWoodenAnswer("equal", context),
         SizedBox(
           width: widget.width * 0.2,
         ),
-        customWoodenAnswer("not_equal"),
+        customWoodenAnswer("not_equal", context),
       ],
     );
   }

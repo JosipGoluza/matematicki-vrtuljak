@@ -56,8 +56,8 @@ void generateBeforeStart(
         var otherAnswer = getOtherValue(random, correctAnswer);
         bool isSame = otherAnswer == correctAnswer;
 
-        var correctIconPositions = generateRandomPositions(10);
-        var otherIconsPositions = generateRandomPositions(10);
+        var correctIconPositions = generateRandomPositions(correctAnswer);
+        var otherIconsPositions = generateRandomPositions(otherAnswer);
 
         StartDifferentSetsGameModel startGameModel =
             StartDifferentSetsGameModel(
