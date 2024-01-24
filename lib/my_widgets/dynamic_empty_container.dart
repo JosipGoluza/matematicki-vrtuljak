@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class DynamicEmptyContainer extends StatefulWidget {
@@ -62,7 +63,7 @@ class _DynamicEmptyContainerState extends State<DynamicEmptyContainer>
                   height: endValue,
                   width: endValue,
                   child: Center(
-                    child: Text(
+                    child: AutoSizeText(
                       'X',
                       style: TextStyle(
                         fontSize: endValue * 0.8,

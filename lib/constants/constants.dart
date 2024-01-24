@@ -24,7 +24,7 @@ const pauseButtonSizeScaleHeight = 13;
 const operationsContainerHeightScale = 0.20;
 const operationsContainerWidthScale = 0.20;
 
-const differentSetsItemPicturesHeightScale = 0.6;
+const differentSetsItemPicturesHeightScale = 0.55;
 const differentSetsItemPicturesWidthScale = 0.38;
 
 const settingsFontSize = 55;

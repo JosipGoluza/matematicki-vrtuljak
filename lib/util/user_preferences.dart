@@ -46,4 +46,9 @@ class UserPreferences {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('musicEnabled', value);
   }
+
+  Future getMusicEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('musicEnabled') ?? false;
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/my_widgets/dynamic_empty_container.dart';
@@ -86,9 +88,14 @@ class _DifferentSetsState extends State<DifferentSets> {
                 IgnorePointer(
                   ignoring: answerBoxColor != Colors.transparent,
                   child: Padding(
-                    padding: EdgeInsets.zero,
+                    padding: EdgeInsets.only(
+                      top: min(constraints.maxWidth / pauseButtonSizeScaleWidth,
+                          constraints.maxHeight / pauseButtonSizeScaleHeight),
+                      bottom: constraints.maxHeight * 0.05,
+                    ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -121,7 +128,7 @@ class _DifferentSetsState extends State<DifferentSets> {
                           ],
                         ),
                         WoodenAnswersDifferentSets(
-                          height: constraints.maxHeight * 0.2,
+                          height: constraints.maxHeight * 0.3,
                           width: constraints.maxWidth * 0.5,
                           correctAnswer: widget.startGameModel.correctAnswer,
                           otherAnswer: widget.startGameModel.otherAnswer,

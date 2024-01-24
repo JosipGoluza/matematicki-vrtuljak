@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/util/getResultDifferentSets.dart';
 
@@ -28,11 +30,12 @@ class _WoodenAnswersDifferentSetsState
 
   Widget customWoodenAnswer(String path, BuildContext appContext) {
     var index = path == "equal" ? 0 : 1;
+    var boxSize = min(widget.width * 0.4, widget.height);
     return Opacity(
       opacity: guessedList[index] ? 0.5 : 1,
       child: SizedBox(
-        width: widget.width * 0.4,
-        height: widget.height,
+        width: boxSize,
+        height: boxSize,
         child: InkWell(
           onTap: () async {
             getResultDifferentSets(
@@ -44,20 +47,31 @@ class _WoodenAnswersDifferentSetsState
               appContext,
             );
           },
-          child: Stack(alignment: Alignment.center, children: [
-            const Image(
-              fit: BoxFit.fill,
-              image: AssetImage(
-                'assets/images/sign.png',
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              const Image(
+                alignment: Alignment.center,
+                fit: BoxFit.fill,
+                image: AssetImage(
+                  'assets/images/sign.png',
+                ),
               ),
-            ),
-            Image(
-              fit: BoxFit.fill,
-              image: AssetImage(
-                'assets/images/$path.png',
+              Padding(
+                padding: EdgeInsets.only(
+                  left: boxSize * 0.05,
+                  bottom: boxSize * 0.1,
+                ),
+                child: Image(
+                  alignment: Alignment.center,
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                    'assets/images/$path.png',
+                  ),
+                ),
               ),
-            ),
-          ]),
+            ],
+          ),
         ),
       ),
     );
@@ -67,6 +81,7 @@ class _WoodenAnswersDifferentSetsState
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         customWoodenAnswer("equal", context),
         SizedBox(
