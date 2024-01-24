@@ -71,15 +71,17 @@ class _RadioButtonOperationsState extends State<RadioButtonOperations> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
-            flex: 1,
-            child: Text(
-              translation(context).enableOperations,
-              textAlign: TextAlign.end,
-              style: TextStyle(
-                fontSize: widget.maxWidth / settingsFontSize,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+          flex: 1,
+          child: AutoSizeText(
+            translation(context).enableOperations,
+            textAlign: TextAlign.end,
+            style: TextStyle(
+              fontSize: widget.maxWidth / settingsFontSize,
+              fontWeight: FontWeight.bold,
+            ),
+            maxLines: 2,
+          ),
+        ),
         const SizedBox(
           width: settingsRowMargin,
         ),

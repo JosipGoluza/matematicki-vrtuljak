@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
@@ -86,23 +87,6 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
             appContext,
             currentSymbol,
           );
-          // showMaterialNumberPicker(
-          //   context: appContext,
-          //   title: "Pick Your Int",
-          //   maxNumber: currentSymbol.max,
-          //   minNumber: currentSymbol.min,
-          //   selectedNumber: currentTasks,
-          //   onChanged: (value) => setState(() => currentTasks = value),
-          //   confirmText: "Ok",
-          //   cancelText: "Cancel",
-          //   onConfirmed: () {
-          //     widget.tasksCallback(currentTasks);
-          //   },
-          //   maxShortSide: 2000,
-          //   maxLongSide: 300,
-          //   headerColor: Colors.grey.shade400,
-          //   headerTextColor: Colors.black,
-          // );
         },
         style: OutlinedButton.styleFrom(
           backgroundColor: Colors.transparent,
@@ -114,12 +98,14 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
           ),
           padding: EdgeInsets.zero,
         ),
-        child: Text(
+        child: AutoSizeText(
           currentTasks.toString(),
           style: TextStyle(
             color: Colors.black,
             fontSize: min(buttonWidth * 0.4, buttonHeight * 0.7),
           ),
+          textAlign: TextAlign.center,
+          maxLines: 1,
         ),
       ),
     );
@@ -136,13 +122,14 @@ class _RadioButtonTasksState extends State<RadioButtonTasks> {
       children: [
         Expanded(
           flex: 1,
-          child: Text(
+          child: AutoSizeText(
             translation(context).tasksUpToNumber,
             textAlign: TextAlign.end,
             style: TextStyle(
               fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
+            maxLines: 2,
           ),
         ),
         const SizedBox(

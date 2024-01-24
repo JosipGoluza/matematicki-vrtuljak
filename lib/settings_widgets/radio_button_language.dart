@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:matematicki_vrtuljak/models/language.dart';
 
@@ -76,13 +77,14 @@ class RadioButtonLanguageState extends State<RadioButtonLanguage> {
         // expanded da odvoji tekst od radio buttona i poravna sve u sredinu
         Expanded(
           flex: 1,
-          child: Text(
+          child: AutoSizeText(
             translation(context).selectLanguage,
             textAlign: TextAlign.end,
             style: TextStyle(
               fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
+            maxLines: 2,
           ),
         ),
         const SizedBox(

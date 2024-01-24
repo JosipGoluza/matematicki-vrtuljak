@@ -125,13 +125,14 @@ class _SettingsState extends State<Settings> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          AutoSizeText(
                             translation(context).settingsTitle,
                             style: TextStyle(
                               fontSize:
                                   constraints.maxWidth / settingsFontSizeTitle,
                               fontWeight: FontWeight.bold,
                             ),
+                            maxLines: 1,
                           ),
                           const SizedBox(height: 10),
                           RadioButtonRounds(
@@ -160,12 +161,18 @@ class _SettingsState extends State<Settings> {
                             constraints.maxHeight,
                           ),
                           const SizedBox(height: 15),
-                          Text(
-                            translation(context).operationGameSettings,
-                            style: TextStyle(
-                              fontSize:
-                                  constraints.maxWidth / settingsFontSizeTitle,
-                              fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: constraints.maxWidth * 0.1,
+                            ),
+                            child: AutoSizeText(
+                              translation(context).operationGameSettings,
+                              style: TextStyle(
+                                fontSize:
+                                    constraints.maxWidth / settingsFontSizeTitle,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              maxLines: 1,
                             ),
                           ),
                           const SizedBox(height: 10),

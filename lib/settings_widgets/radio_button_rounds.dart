@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -51,12 +52,14 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
           ),
           padding: EdgeInsets.zero,
         ),
-        child: Text(
+        child: AutoSizeText(
           text,
           style: TextStyle(
             color: (widget.value == roundsValue) ? Colors.white : Colors.black,
-            fontSize: min(buttonWidth * 0.4, buttonHeight * 0.7),
+            fontSize: 9999,
           ),
+          textAlign: TextAlign.center,
+          maxLines: 1,
         ),
       ),
     );
@@ -67,16 +70,16 @@ class _RadioButtonRoundsState extends State<RadioButtonRounds> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // expanded da odvoji tekst od radio buttona i poravna sve u sredinu
         Expanded(
           flex: 1,
-          child: Text(
+          child: AutoSizeText(
             translation(context).numberOfRoundsLocalization,
             textAlign: TextAlign.end,
             style: TextStyle(
               fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
+            maxLines: 2,
           ),
         ),
         const SizedBox(

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
@@ -60,9 +58,10 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
             style: TextStyle(
               color:
                   (widget.value == symbolValue) ? Colors.white : Colors.black,
-              fontSize: 9999,
+              fontSize: fontMaxSize,
             ),
             maxLines: 1,
+            textAlign: TextAlign.center,
           ),
           GameSymbol.images: Image.asset(
             'assets/images/option_apple.png',
@@ -83,13 +82,14 @@ class _RadioButtonSymbolsState extends State<RadioButtonSymbols> {
       children: [
         Expanded(
           flex: 1,
-          child: Text(
+          child: AutoSizeText(
             translation(context).numbersOrSymbols,
             textAlign: TextAlign.end,
             style: TextStyle(
               fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
+            maxLines: 2,
           ),
         ),
         const SizedBox(

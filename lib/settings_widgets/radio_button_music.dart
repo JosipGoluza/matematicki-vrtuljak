@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -47,12 +48,14 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
           ),
           padding: EdgeInsets.zero,
         ),
-        child: Text(
+        child: AutoSizeText(
           text,
           style: TextStyle(
             color: (widget.value == musicValue) ? Colors.white : Colors.black,
             fontSize: min(buttonWidth * 0.4, buttonHeight * 0.7),
           ),
+          textAlign: TextAlign.center,
+          maxLines: 1,
         ),
       ),
     );
@@ -65,13 +68,14 @@ class _RadioButtonMusicState extends State<RadioButtonMusic> {
       children: [
         Expanded(
           flex: 1,
-          child: Text(
+          child: AutoSizeText(
             translation(context).music,
             textAlign: TextAlign.end,
             style: TextStyle(
               fontSize: widget.maxWidth / settingsFontSize,
               fontWeight: FontWeight.bold,
             ),
+            maxLines: 2,
           ),
         ),
         const SizedBox(
