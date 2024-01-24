@@ -1,8 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/models/game_finish_model.dart';
 import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
+import 'package:matematicki_vrtuljak/my_widgets/game_finish/game_finish_back_button.dart';
+import 'package:matematicki_vrtuljak/my_widgets/game_finish/game_finish_restart_button.dart';
 import 'package:matematicki_vrtuljak/util/language_constants.dart';
 
 import '../constants/constants.dart';
@@ -52,68 +53,41 @@ class _GameFinishState extends State<GameFinish> {
                         ),
                         maxLines: 1,
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 4),
                       correctGuesses(
                         correctGuessesText,
                         context,
                         constraints.maxWidth,
+                        constraints.maxHeight,
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 2),
                       wrongGuesses(
                         wrongGuessesText,
                         context,
                         constraints.maxWidth,
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 2),
                       timeTaken(
                         minutesText,
                         secondsText,
                         context,
                         constraints.maxWidth,
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 2),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: constraints.maxWidth * 0.25,
-                            height: constraints.maxHeight * 0.13,
-                            child: ElevatedButton(
-                              onPressed: () => {
-                                context.go('/'),
-                              },
-                              child: AutoSizeText(
-                                translation(context).gameFinishReturn,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: (constraints.maxWidth * 0.25) * 0.15,
-                                  color: Colors.grey.shade800,
-                                ),
-                              ),
-                            ),
+                          gameFinishBackButton(
+                            context,
+                            constraints.maxWidth * gameFinishButtonWidthScale,
+                            constraints.maxHeight * gameFinishButtonHeightScale,
                           ),
                           const SizedBox(width: 10),
-                          SizedBox(
-                            width: constraints.maxWidth * 0.25,
-                            height: constraints.maxHeight * 0.13,
-                            child: ElevatedButton(
-                              onPressed: () => {
-                                restartNewGame(
-                                  context,
-                                  path,
-                                ),
-                              },
-                              child: AutoSizeText(
-                                translation(context).playAgain,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: (constraints.maxWidth * 0.25) * 0.15,
-                                  color: Colors.grey.shade800,
-                                ),
-                              ),
-                            ),
+                          gameFinishRestartButton(
+                            context,
+                            constraints.maxWidth * gameFinishButtonWidthScale,
+                            constraints.maxHeight * gameFinishButtonHeightScale,
+                            path,
                           ),
                         ],
                       ),
@@ -165,62 +139,50 @@ class _GameFinishState extends State<GameFinish> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    AutoSizeText(
                       translation(context).gameOver,
                       style: TextStyle(
                         fontSize: cardWidth * gameFinishTitleFontScale,
                         fontWeight: FontWeight.bold,
                       ),
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 20),
-                    correctGuesses(correctGuessesText, context, cardWidth),
+                    correctGuesses(
+                      correctGuessesText,
+                      context,
+                      cardWidth,
+                      cardHeight,
+                    ),
                     const SizedBox(height: 20),
-                    wrongGuesses(wrongGuessesText, context, cardWidth),
+                    wrongGuesses(
+                      wrongGuessesText,
+                      context,
+                      cardWidth,
+                    ),
                     const SizedBox(height: 20),
-                    timeTaken(minutesText, secondsText, context, cardWidth),
+                    timeTaken(
+                      minutesText,
+                      secondsText,
+                      context,
+                      cardWidth,
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: cardWidth * 0.25,
-                          height: cardHeight * 0.13,
-                          child: ElevatedButton(
-                            onPressed: () => {
-                              context.go('/'),
-                            },
-                            child: AutoSizeText(
-                              translation(context).gameFinishReturn,
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: (cardWidth * 0.25) * 0.1,
-                                color: Colors.grey.shade800,
-                              ),
-                            ),
-                          ),
+                        gameFinishBackButton(
+                          context,
+                          cardWidth * gameFinishButtonWidthScale,
+                          cardHeight * gameFinishButtonHeightScale,
                         ),
                         const SizedBox(width: 10),
-                        SizedBox(
-                          width: cardWidth * 0.25,
-                          height: cardHeight * 0.13,
-                          child: ElevatedButton(
-                            onPressed: () => {
-                              restartNewGame(
-                                context,
-                                path,
-                              ),
-                            },
-                            child: AutoSizeText(
-                              translation(context).playAgain,
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: (cardWidth * 0.25) * 0.1,
-                                color: Colors.grey.shade800,
-                              ),
-                            ),
-                          ),
+                        gameFinishRestartButton(
+                          context,
+                          cardWidth * gameFinishButtonWidthScale,
+                          cardHeight * gameFinishButtonHeightScale,
+                          path,
                         ),
                       ],
                     ),

@@ -16,7 +16,7 @@ Widget wrongGuesses(
         translation(context).numberOfMisses,
         textAlign: TextAlign.end,
         style: TextStyle(
-          fontSize: maxWidth * gameFinishTextFontScale,
+          fontSize: maxWidth * gameFinishTextRowFontScale,
           fontWeight: FontWeight.bold,
         ),
         maxLines: 1,
@@ -28,7 +28,7 @@ Widget wrongGuesses(
         wrongGuessText,
         textAlign: TextAlign.start,
         style: TextStyle(
-          fontSize: maxWidth * gameFinishTextFontScale,
+          fontSize: maxWidth * gameFinishTextRowFontScale,
         ),
         maxLines: 1,
       ),

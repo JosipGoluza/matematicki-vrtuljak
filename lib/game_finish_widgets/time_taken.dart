@@ -17,7 +17,7 @@ Widget timeTaken(
         translation(context).totalTime,
         textAlign: TextAlign.end,
         style: TextStyle(
-          fontSize: width * gameFinishTextFontScale,
+          fontSize: width * gameFinishTextRowFontScale,
           fontWeight: FontWeight.bold,
         ),
         maxLines: 1,
@@ -29,7 +29,7 @@ Widget timeTaken(
         '$minutes min $seconds s',
         textAlign: TextAlign.start,
         style: TextStyle(
-          fontSize: width * gameFinishTextFontScale,
+          fontSize: width * gameFinishTextRowFontScale,
         ),
         maxLines: 1,
       ),
