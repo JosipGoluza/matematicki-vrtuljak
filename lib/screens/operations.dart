@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matematicki_vrtuljak/before_game/generate_before_start_operations.dart';
@@ -80,6 +82,9 @@ class _OperationsState extends State<Operations> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
+          var boxWidth = constraints.maxWidth * operationsContainerWidthScale;
+          var boxHeight =
+              constraints.maxHeight * operationsContainerHeightScale;
           return Container(
             padding: const EdgeInsets.all(
               smallScreenPadding,
@@ -109,65 +114,65 @@ class _OperationsState extends State<Operations> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           StaticEmptyContainer(
-                            height: constraints.maxHeight *
-                                operationsContainerHeightScale,
-                            width: constraints.maxWidth *
-                                operationsContainerWidthScale,
+                            height: boxHeight,
+                            width: boxWidth,
                             gameSymbol: widget.startGameModel.gameSymbol,
                             containerNumber: widget
                                 .startGameModel.operationValues.firstNumber,
                           ),
-                          Text(
-                            widget
-                                .startGameModel.operationValues.operator.value,
-                            style: TextStyle(
-                              fontSize: constraints.maxHeight * 0.10,
+                          Padding(
+                            padding: EdgeInsets.only(
+                              bottom: min(boxHeight, boxWidth) * 0.08,
+                            ),
+                            child: Text(
+                              widget.startGameModel.operationValues.operator
+                                  .value,
+                              style: TextStyle(
+                                fontSize: min(
+                                    constraints.maxHeight * operatorHeightScale,
+                                    constraints.maxWidth * operatorWidthScale),
+                              ),
                             ),
                           ),
                           StaticEmptyContainer(
-                            height: constraints.maxHeight *
-                                operationsContainerHeightScale,
-                            width: constraints.maxWidth *
-                                operationsContainerWidthScale,
+                            height: boxHeight,
+                            width: boxWidth,
                             gameSymbol: widget.startGameModel.gameSymbol,
                             containerNumber: widget
                                 .startGameModel.operationValues.secondNumber,
                           ),
-                          Text(
-                            " = ",
-                            style: TextStyle(
-                              fontSize: constraints.maxHeight * 0.10,
+                          Padding(
+                            padding: EdgeInsets.only(
+                              bottom: min(boxHeight, boxWidth) * 0.08,
+                            ),
+                            child: Text(
+                              "=",
+                              style: TextStyle(
+                                fontSize: min(
+                                    constraints.maxHeight * operatorHeightScale,
+                                    constraints.maxWidth * operatorWidthScale),
+                              ),
                             ),
                           ),
                           DynamicEmptyContainer(
-                            height: constraints.maxHeight *
-                                operationsContainerHeightScale,
-                            width: constraints.maxWidth *
-                                operationsContainerWidthScale,
+                            height: boxHeight,
+                            width: boxWidth,
                             boxColor: answerBoxColor,
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          WoodenAnswers(
-                            height: constraints.maxHeight * 0.2,
-                            width: constraints.maxWidth * 0.95,
-                            correctAnswer: widget
-                                .startGameModel.operationValues.operationResult,
-                            numberOfAnswers:
-                                widget.startGameModel.numberOfAnswers,
-                            maxAnswerNumber:
-                                widget.startGameModel.gameSymbol.max,
-                            gameSymbol: widget.startGameModel.gameSymbol,
-                            answerBoxCallback: answerBoxCallback,
-                          ),
-                        ],
+                      WoodenAnswers(
+                        height: constraints.maxHeight * 0.3,
+                        width: constraints.maxWidth * 0.9,
+                        correctAnswer: widget
+                            .startGameModel.operationValues.operationResult,
+                        numberOfAnswers: widget.startGameModel.numberOfAnswers,
+                        maxAnswerNumber: widget.startGameModel.gameSymbol.max,
+                        gameSymbol: widget.startGameModel.gameSymbol,
+                        answerBoxCallback: answerBoxCallback,
                       ),
                     ],
                   ),

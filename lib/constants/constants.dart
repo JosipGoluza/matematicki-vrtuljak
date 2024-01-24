@@ -21,8 +21,10 @@ const isDesktopHeight = 500;
 const pauseButtonSizeScaleWidth = 17.0;
 const pauseButtonSizeScaleHeight = 13;
 
-const operationsContainerHeightScale = 0.20;
-const operationsContainerWidthScale = 0.20;
+const operationsContainerHeightScale = 0.40;
+const operationsContainerWidthScale = 0.23;
+const operatorHeightScale = 0.2;
+const operatorWidthScale = 0.4;
 
 const differentSetsItemPicturesHeightScale = 0.55;
 const differentSetsItemPicturesWidthScale = 0.38;
