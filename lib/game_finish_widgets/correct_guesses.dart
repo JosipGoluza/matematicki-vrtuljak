@@ -10,30 +10,27 @@ Widget correctGuesses(
   double width,
 ) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Expanded(
-        child: AutoSizeText(
-          translation(context).numberOfHits,
-          textAlign: TextAlign.end,
-          style: TextStyle(
-            fontSize: width * gameFinishTextFontScale,
-            fontWeight: FontWeight.bold,
-          ),
-          maxLines: 1,
+      AutoSizeText(
+        translation(context).numberOfHits,
+        textAlign: TextAlign.end,
+        style: TextStyle(
+          fontSize: width * gameFinishTextFontScale,
+          fontWeight: FontWeight.bold,
         ),
+        maxLines: 1,
       ),
       const SizedBox(
         width: settingsRowMargin,
       ),
-      Expanded(
-        child: AutoSizeText(
-          correctGuessText,
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            fontSize: width * gameFinishTextFontScale,
-          ),
-          maxLines: 1,
+      AutoSizeText(
+        correctGuessText,
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontSize: width * gameFinishTextFontScale,
         ),
+        maxLines: 1,
       ),
     ],
   );

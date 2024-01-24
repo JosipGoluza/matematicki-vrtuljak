@@ -38,7 +38,7 @@ const settingsButtonBorderWidthScale = 0.06;
 const double fontMaxSize = 9999;
 
 const double gameFinishTitleFontScale = 0.06;
-const double gameFinishTextFontScale = 0.03;
+const double gameFinishTextFontScale = 0.025;
 const double gameFinishDesktopScale = 0.5;
 
 const double randomItemSizeScale = 0.2;

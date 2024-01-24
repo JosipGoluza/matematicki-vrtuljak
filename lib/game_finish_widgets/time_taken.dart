@@ -11,30 +11,27 @@ Widget timeTaken(
   double width,
 ) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Expanded(
-        child: AutoSizeText(
-          translation(context).totalTime,
-          textAlign: TextAlign.end,
-          style: TextStyle(
-            fontSize: width * gameFinishTextFontScale,
-            fontWeight: FontWeight.bold,
-          ),
-          maxLines: 1,
+      AutoSizeText(
+        translation(context).totalTime,
+        textAlign: TextAlign.end,
+        style: TextStyle(
+          fontSize: width * gameFinishTextFontScale,
+          fontWeight: FontWeight.bold,
         ),
+        maxLines: 1,
       ),
       const SizedBox(
         width: settingsRowMargin,
       ),
-      Expanded(
-        child: AutoSizeText(
-          '$minutes min $seconds s',
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            fontSize: width * gameFinishTextFontScale,
-          ),
-          maxLines: 1,
+      AutoSizeText(
+        '$minutes min $seconds s',
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontSize: width * gameFinishTextFontScale,
         ),
+        maxLines: 1,
       ),
     ],
   );

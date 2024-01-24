@@ -52,26 +52,26 @@ class _GameFinishState extends State<GameFinish> {
                         ),
                         maxLines: 1,
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 12),
                       correctGuesses(
                         correctGuessesText,
                         context,
                         constraints.maxWidth,
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 8),
                       wrongGuesses(
                         wrongGuessesText,
                         context,
                         constraints.maxWidth,
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 8),
                       timeTaken(
                         minutesText,
                         secondsText,
                         context,
                         constraints.maxWidth,
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -87,7 +87,7 @@ class _GameFinishState extends State<GameFinish> {
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: (constraints.maxWidth * 0.25) * 0.1,
+                                  fontSize: (constraints.maxWidth * 0.25) * 0.15,
                                   color: Colors.grey.shade800,
                                 ),
                               ),
@@ -109,7 +109,7 @@ class _GameFinishState extends State<GameFinish> {
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: (constraints.maxWidth * 0.25) * 0.1,
+                                  fontSize: (constraints.maxWidth * 0.25) * 0.15,
                                   color: Colors.grey.shade800,
                                 ),
                               ),
