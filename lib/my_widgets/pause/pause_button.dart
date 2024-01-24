@@ -69,18 +69,25 @@ class _PauseButtonState extends State<PauseButton> {
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 16),
-              SizedBox(width: 200, height: 50, child: ResumeButton(appContext)),
               const SizedBox(height: 12),
               SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: RestartButton(widget.restartButtonCallback, appContext)),
-              const SizedBox(height: 12),
+                width: 250,
+                height: 50,
+                // textSize: textScaleFactor,
+                child: ResumeButton(appContext),
+              ),
+              const SizedBox(height: 8),
               SizedBox(
-                  width: 200,
+                  width: 250,
                   height: 50,
-                  child: ExitButtonDialog(widget.exitButtonCallback, appContext)),
+                  child:
+                      RestartButton(widget.restartButtonCallback, appContext)),
+              const SizedBox(height: 8),
+              SizedBox(
+                  width: 250,
+                  height: 50,
+                  child:
+                      ExitButtonDialog(widget.exitButtonCallback, appContext)),
             ],
           ),
         );
