@@ -1,107 +1,136 @@
-import 'package:flutter/material.dart';
-import 'package:matematicki_vrtuljak/my_widgets/exit_button.dart';
-import 'package:matematicki_vrtuljak/util/language_constants.dart';
-import 'package:url_launcher/link.dart';
+import 'dart:math';
 
-import '../constants/constants.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:matematicki_vrtuljak/my_widgets/about/about_close_button.dart';
+import 'package:matematicki_vrtuljak/my_widgets/about/about_fourth_section.dart';
+import 'package:matematicki_vrtuljak/my_widgets/about/about_third_section.dart';
+import 'package:matematicki_vrtuljak/util/language_constants.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../my_widgets/about/about_second_section.dart';
 
 class About extends StatelessWidget {
   const About({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController firstController = ScrollController();
+
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return Scaffold(
-            backgroundColor: Colors.grey[350],
-            body: LayoutBuilder(
-              builder: (context, constraints) {
-                // stack is used to set pause button on top right corner
-                return Stack(
+          var width = constraints.maxWidth;
+          var height = constraints.maxHeight;
+          var fontSize = min(width * 0.5, height) * 0.05;
+
+          return Scrollbar(
+            trackVisibility: true,
+            thumbVisibility: true,
+            controller: firstController,
+            child: SingleChildScrollView(
+              controller: firstController,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.1,
+                  vertical: height * 0.05,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    translation(context).about,
-                                    style: const TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Text(
-                                    translation(context).aboutProject,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    translation(context).elementsUsedFrom,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Link(
-                                    target: LinkTarget.blank,
-                                    uri: Uri.parse(
-                                        'http://www.catedu.es/arasaac'),
-                                    builder: (context, followLink) {
-                                      return GestureDetector(
-                                        onTap: followLink,
-                                        child: const Text(
-                                          'http://www.catedu.es/arasaac',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.blueAccent,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Link(
-                                    target: LinkTarget.blank,
-                                    uri: Uri.parse('http://opengameart.org'),
-                                    builder: (context, followLink) {
-                                      return GestureDetector(
-                                        onTap: followLink,
-                                        child: const Text(
-                                          'http://opengameart.org',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.blueAccent,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                    const Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Image(
+                            image: AssetImage(
+                                'assets/images/about/logo_ict_aac.png'),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Image(
+                            image:
+                                AssetImage('assets/images/about/logo_eu.png'),
+                          ),
+                        ),
+                      ],
+                    ),
+                    AutoSizeText(
+                      translation(context).aboutProject,
+                      style: TextStyle(
+                        fontSize: fontSize,
+                      ),
+                      // textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 10),
+                    AutoSizeText(
+                      translation(context).aboutOtherProjects,
+                      style: TextStyle(
+                        fontSize: fontSize,
+                      ),
+                      // textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 10),
+                    AboutSecondSection(
+                      fontSize,
+                    ),
+                    const SizedBox(height: 10),
+                    AutoSizeText(
+                      translation(context).elementsUsedFrom,
+                      style: TextStyle(
+                        fontSize: fontSize,
+                      ),
+                      // textAlign: TextAlign.start,
+                    ),
+                    const SizedBox(height: 10),
+                    AboutThirdSection(
+                      fontSize,
+                    ),
+                    AboutFourthSection(
+                      fontSize,
+                    ),
+                    const SizedBox(height: 10),
+                    AutoSizeText(
+                      translation(context).privacyPolicy,
+                      style: TextStyle(
+                        fontSize: fontSize,
+                      ),
+                      // textAlign: TextAlign.start,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        launchUrl(
+                          Uri.parse(
+                            translation(context).privacyPolicyLink,
+                          ),
+                        );
+                      },
+                      child: AutoSizeText(
+                        translation(context).privacyPolicyLabel,
+                        style: TextStyle(
+                          fontSize: fontSize,
+                          color: Colors.blue,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(smallScreenPadding),
-                      child: ExitButton(
-                          constraints.maxWidth, constraints.maxHeight),
+                    const SizedBox(height: 10),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        aboutCloseButton(
+                          context,
+                          width * 0.2,
+                          height * 0.1,
+                          fontSize,
+                        ),
+                      ],
                     ),
                   ],
-                );
-              },
+                ),
+              ),
             ),
           );
         },

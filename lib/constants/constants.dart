@@ -44,6 +44,6 @@ const double gameFinishTextRowFontScale = 0.03;
 const double gameFinishTextHeightFontScale = 0.15;
 const double gameFinishDesktopScale = 0.5;
 const double gameFinishButtonWidthScale = 0.35;
-const double gameFinishButtonHeightScale = 0.16;
+const double gameFinishButtonHeightScale = 0.13;
 
-const double randomItemSizeScale = 0.2;
+const double randomItemSizeScale = 0.19;
